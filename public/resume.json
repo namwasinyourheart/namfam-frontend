@@ -1,0 +1,124 @@
+{
+    "name": "NAM PHAM",
+    "contact": {
+      "address": "Hai Ba Trung District, Hanoi",
+      "phone": "(+84)38 3508 351",
+      "email": "itsnamfam@gmail.com",
+      "github": "github.com/namwasinyourheart"
+    },
+    "professional_experience": [
+      {
+        "company": "Machine Learning Pulse Blog",
+        "title": "Founder/Blogger",
+        "duration": "Apr 2024 – Present",
+        "responsibilities": [
+          "Regularly produce in-depth articles, tutorials, and case studies exploring advanced AI/machine learning concepts, methodologies, and applications.",
+          "Garnered 1,000 subscribers on the fanpage, amassed 1,000 social media followers, and cultivated a community of 1,000 active members."
+        ]
+      },
+      {
+        "company": "VinBigData",
+        "title": "Technology Specialist, Vingroup AI Engineer Training Program",
+        "duration": "Jul 2023 – Apr 2024",
+        "responsibilities": [
+          "Selected among many candidates across the country after a 3-step admission process. Participated in intensive AI training courses in phase 1 on AI/ML/CV/NLP concepts, algorithms, and methodologies through homeworks, hands-on workshops, seminars, and projects.",
+          "Implemented capstone projects: aspect-based sentiment analysis, image captioning, de-makeup.",
+          "Engaged in a challenging internship in phase 2, specializing in speaker recognition, focusing on addressing device and environment mismatch issues in real-world applications.",
+          "Reproduced a method with an optimized training strategy with a custom loss function from a paper to apply to a large dataset, unfortunately did not work as expected.",
+          "Conducted survey research on data and methodologies and successfully constructed a baseline model for addressing the voice anti-spoofing problem. Additionally contributed to the team by testing and analyzing the team's solution models' performance on benchmark datasets."
+        ]
+      },
+      {
+        "company": "Viettel Group",
+        "title": "Resident of Viettel Digital Talent Program - track DS & AI",
+        "duration": "Apr 2023 – Jun 2023",
+        "responsibilities": [
+          "Selected among many candidates across the country after a 3-step admission process.",
+          "Participated in phase 1 of the training program, which focused on developing skills in data science and artificial intelligence. Engaged in coursework, collaborating with a diverse group of students to solve assignments.",
+          "Performed a mini-project about dialect and gender identification for Vietnamese speakers, aimed to compare the effectiveness of various pre-trained deep audio representations."
+        ]
+      },
+      {
+        "company": "Viettel High Tech",
+        "title": "Research Engineer Intern",
+        "duration": "Jul 2022 – Nov 2022",
+        "responsibilities": [
+          "Learned the fundamentals of signal processing; developed a voice activity detection model for speech signals using LSTM. The models achieved train accuracy of 96% and test accuracy of 90%.",
+          "Researched to solve the problem of data drift with real-world data, but was not successful."
+        ]
+      }
+    ],
+    "technical_skills": {
+      "data_science": ["Statistical Analysis", "Data Visualization"],
+      "machine_learning": ["Regression", "Decision Tree", "Ensemble Methods", "SVM", "LightGBM", "XGBoost"],
+      "natural_language_processing": ["CNN", "RNN/LSTM", "BERT", "Transformers", "LLMs", "RAG", "Langchain"],
+      "speech_processing": ["Speaker Verification", "Text-to-Speech", "Voice Cloning"],
+      "mlops": ["Docker", "FastAPI", "RestAPI", "AWS", "GCP", "Azure", "Data Version Control"],
+      "languages_tools": ["Python", "SQL", "Git", "LaTex", "Confluence"],
+      "libraries_frameworks": ["Tensorflow", "Keras", "PyTorch", "Scikit-learn", "Scrapy", "Selenium", "BeautifulSoup", "Streamlit", "WandB", "Qdrant"]
+    },
+    "education": {
+      "institution": "Hanoi University of Science and Technology",
+      "degree": "Bachelor in Computer Science",
+      "duration": "Fall 2018 – Present",
+      "cumulative_cpa": "3.22/4.0",
+      "graduation_thesis": {
+        "title": "Chatbot Question Answering",
+        "grade": "9.5/10"
+      }
+    },
+    "side_projects": [
+      {
+        "title": "Voice Cloning",
+        "details": "Developed a voice assistant using IBM Watson and GPT-3. Integrated IBM Watson's Speech-to-Text and Text-to-Speech with OpenAI’s GPT-3 for intelligent responses, and deployed the application using Streamlit."
+      },
+      {
+        "title": "Real-Time Stock Investing Advisor",
+        "details": "Built pipelines: feature pipeline, training and inference pipeline. Technologies used: Bytewax, Qdrant, LLMs, Beam, Comet, Gradio."
+      },
+      {
+        "title": "Food Recommender",
+        "details": "Developed Choosistant, an ML-powered system aiding purchasing decisions by extracting and summarizing pros and cons from product reviews. Leveraged advanced NLP techniques to predict key spans of text describing favorable and unfavorable product features as perceived by reviewers. Technologies used: Transformers, FastAPI."
+      },
+      {
+        "title": "Data Science, Jobs Category Analysis",
+        "details": "Performed exploratory data analysis on freelance job platform Fiverr using Selenium/BeautifulSoup to gather data; visualization, data analysis; Developed a model aimed to predict the trend of customers, derive insight, trend and assist marketing campaigns."
+      }
+    ],
+    "certifications": [
+      {
+        "title": "DeepLearning.AI Generative AI with Large Language Models",
+        "date": "Jul 2023"
+      },
+      {
+        "title": "Microsoft Certified: Azure AI Fundamentals",
+        "date": "Jun 2023"
+      },
+      {
+        "title": "Stanford Machine Learning",
+        "date": "Apr 2022"
+      },
+      {
+        "title": "DeepLearning.AI Tensorflow Developer",
+        "date": "Apr 2022"
+      },
+      {
+        "title": "IBM AI Engineer",
+        "date": "Mar 2022"
+      },
+      {
+        "title": "IBM Data Science",
+        "date": "Mar 2022"
+      },
+      {
+        "title": "Google Project Management",
+        "date": "Date not provided"
+      }
+    ],
+    "additional_information": {
+      "english": "TOEIC certificate with score 795 - issued by IIG Mar 2023",
+      "chinese": "HSK …",
+      "activities": "Runner-up Iron Team"
+    }
+  }
+  
