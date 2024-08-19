@@ -6,7 +6,7 @@ export default function Home() {
     <div className="flex flex-col md:flex-row justify-center items-center h-full bg-white-400">
       {/* Column 1 */}
       <div className="w-full md:w-1/2 text-left md:text-left p-10">
-        <h1 style={{ fontSize: '5vw' }} className="font-bold mb-4">Hi. I'm Nam</h1>
+        <h1 style={{ fontSize: '5vw' }} className="font-bold mb-4">Hi. I&apos;m Nam</h1>
         <div style={{ fontSize: '1.5rem', marginBottom: '4rem' }} className="text-xl mb-8">I am an AI engineer focused on leveraging artificial intelligence to solve complex challenges and drive innovation. 
         
         <p>Explore my portfolio to see how I turn cutting-edge AI concepts into practical solutions.</p>
