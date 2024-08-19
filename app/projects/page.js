@@ -63,7 +63,7 @@ export default function Projects() {
       <div className="px-4 py-8 w-4/5 mx-auto">
       {/* <div className="px-0 py-0  w-full max-w-4xl mx-auto"> */}
         <h1 className="text-4xl font-bold mb-4 text-center">Projects</h1>
-        <p className="mb-8 text-center">Here are past projects I've worked on. Click on to see more.</p>
+        <p className="mb-8 text-center">Here are past projects I&apos;ve worked on. Click on to see more.</p>
         
         {/* Navbar for Category Selection */}
         <div className="mb-8 flex justify-center space-x-4">

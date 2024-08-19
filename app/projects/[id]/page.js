@@ -2,6 +2,7 @@
 
 import { useParams } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
+import Image from 'next/image'
 
 const fetchProjects = async () => {
   const response = await fetch('/projects.jsonl');
@@ -56,7 +57,7 @@ export default function ProjectDetail() {
             style={{ transform: `translateX(-${currentImageIndex * 100}%)` }}
           >
             {project.images.map((image, index) => (
-              <img
+              <Image
                 key={index}
                 src={image}
                 alt={`Project image ${index + 1}`}

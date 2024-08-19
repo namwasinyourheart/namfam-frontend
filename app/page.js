@@ -40,7 +40,7 @@ export default function Home() {
       </div>
 
       {/* Column 2 */}
-      <div className="w-2/5 md:w-1/2 md: flex-row p-10 flex flex-col h-full justify-center ">
+      <div className="w-2/5 md:w-1/2 p-10 flex flex-col h-full justify-center ">
         <p className='text-center font-bold mb-4 text-3xl'>
           Ask Nam Anything
         </p>
