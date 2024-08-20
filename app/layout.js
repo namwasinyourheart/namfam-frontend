@@ -4,7 +4,7 @@
 import './globals.css';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import ChatPopup from './components/ChatPopup'; // Adjust the import path as necessary
+// import ChatPopup from './components/ChatPopup'; // Adjust the import path as necessary
 
 // export const metadata = {
 //   title: 'Nam Fam',
