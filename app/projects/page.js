@@ -3,12 +3,31 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 // import Navbar from './Navbar'; // Adjust the import path as necessary
+// const fetchProjects = async () => {
+//   const response = await fetch('/projects.jsonl');
+//   console.log(response)
+//   const text = await response.text();
+//   const projects = text.split('\n').filter(line => line.trim() !== '').map(line =>JSON.parse(line));
+//   return projects;
+// };
+
 const fetchProjects = async () => {
-  const response = await fetch('/projects.jsonl');
-  console.log(response)
-  const text = await response.text();
-  const projects = text.split('\n').filter(line => line.trim() !== '').map(line =>JSON.parse(line));
-  return projects;
+  try {
+    // Replace 'your-api-endpoint' with the actual endpoint URL
+    const response = await fetch('http://127.0.0.1:8000/api/projects/');
+    
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    // Parse the response as JSON
+    const projects = await response.json();
+    
+    return projects;
+  } catch (error) {
+    console.error('Error fetching projects:', error);
+    return [];
+  }
 };
 
 

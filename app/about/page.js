@@ -1,5 +1,33 @@
 import React from 'react';
 
+
+const getAboutInfo = async () => {
+  try {
+      const response = await fetch('/api/about/');
+      if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      const data = await response.json();
+      console.log(data);
+      // Process the data as needed
+      // Example: Displaying the experiences in a list
+      const experiences = data.experiences;
+      return experiences
+      // experiences.forEach(exp => {
+      //     console.log(`Position: ${exp.position}`);
+      //     console.log(`Company: ${exp.company}`);
+      //     console.log(`Start Date: ${exp.start_date}`);
+      //     console.log(`End Date: ${exp.end_date}`);
+      //     console.log(`Description: ${exp.description}`);
+      //     console.log('---');
+      // });
+  } catch (error) {
+      console.error('Error fetching about info:', error);
+  }
+};
+
+
+
 const AboutPage = () => {
   // Dummy data
   const resume = {

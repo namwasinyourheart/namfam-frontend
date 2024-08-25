@@ -4,13 +4,52 @@ import { useParams } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image'
 
-const fetchProjects = async () => {
-  const response = await fetch('/projects.jsonl');
-  console.log(response)
-  const text = await response.text();
-  const projects = text.split('\n').filter(line => line.trim() !== '').map(line =>JSON.parse(line));
-  return projects;
+// const fetchProjects = async () => {
+//   const response = await fetch('/projects.jsonl');
+//   console.log(response)
+//   const text = await response.text();
+//   const projects = text.split('\n').filter(line => line.trim() !== '').map(line =>JSON.parse(line));
+//   return projects;
+// };
+
+const fetchProjectById = async (id) => {
+  try {
+    // Fetch the project by id from the Django API
+    const response = await fetch(`http://127.0.0.1:8000/api/projects/${id}/`);
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    // Parse the response as JSON
+    const project = await response.json();
+
+    return project;
+  } catch (error) {
+    console.error('Error fetching project:', error);
+    return null;
+  }
 };
+
+
+// const fetchProjects = async () => {
+//   try {
+//     // Replace 'your-api-endpoint' with the actual endpoint URL
+//     const response = await fetch('http://127.0.0.1:8000/api/projects/');
+    
+//     if (!response.ok) {
+//       throw new Error(`HTTP error! status: ${response.status}`);
+//     }
+
+//     // Parse the response as JSON
+//     const projects = await response.json();
+    
+//     return projects;
+//   } catch (error) {
+//     console.error('Error fetching projects:', error);
+//     return [];
+//   }
+// };
 
 
 export default function ProjectDetail() {
@@ -20,12 +59,31 @@ export default function ProjectDetail() {
   const [error, setError] = useState(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
+  // useEffect(() => {
+  //   const loadProjects = async () => {
+  //     try {
+  //       const projects = await fetchProjects();
+  //       const selectedProject = projects.find(p => p.id === id);
+  //       setProject(selectedProject);
+  //     } catch (error) {
+  //       setError(error);
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   };
+
+  //   loadProjects();
+  // }, [id]);
+
   useEffect(() => {
-    const loadProjects = async () => {
+    const loadProject = async () => {
       try {
-        const projects = await fetchProjects();
-        const selectedProject = projects.find(p => p.id === id);
-        setProject(selectedProject);
+        const selectedProject = await fetchProjectById(id);
+        if (selectedProject) {
+          setProject(selectedProject);
+        } else {
+          setError(new Error('Project not found'));
+        }
       } catch (error) {
         setError(error);
       } finally {
@@ -33,7 +91,7 @@ export default function ProjectDetail() {
       }
     };
 
-    loadProjects();
+    loadProject();
   }, [id]);
 
   if (loading) return<p>Loading...</p>;
@@ -56,10 +114,13 @@ export default function ProjectDetail() {
             className="flex transition-transform duration-300"
             style={{ transform: `translateX(-${currentImageIndex * 100}%)` }}
           >
-            {project.images.map((image, index) => (
+            {project.images.images.map((image, index) => (
               <Image
                 key={index}
                 src={image}
+                // layout="fill"
+                width={800}
+                height={600}
                 alt={`Project image ${index + 1}`}
                 className="w-full h-64 object-cover flex-shrink-0" // Ensure each image is a single control width
               />
@@ -69,7 +130,7 @@ export default function ProjectDetail() {
 
         {/* Pagination Controls */}
         <div className="flex justify-center space-x-2 mb-4">
-          {project.images.map((_, index) => (
+          {project.images.images.map((_, index) => (
             <button
               key={index}
               onClick={() => handleImageClick(index)}
@@ -87,7 +148,7 @@ export default function ProjectDetail() {
       <div className="mb-6">
         <h2 className="text-2xl font-bold mb-2">Key Features</h2>
         <ul className="list-disc pl-5">
-          {project.keyFeatures.map((feature, index) => (
+          {project.keyFeatures.keyFeatures.map((feature, index) => (
             <li key={index}>{feature}</li>
           ))}
         </ul>
@@ -97,7 +158,7 @@ export default function ProjectDetail() {
       <div className="mb-8">
         <h2 className="text-xl font-semibold mb-2">Technologies Used:</h2>
         <div className="flex flex-wrap gap-2">
-          {project.technologies.map((tech, index) => (
+          {project.technologies.technologies.map((tech, index) => (
             <span
               key={index}
               className="px-3 py-1 rounded-full text-white"
