@@ -15,7 +15,7 @@ import Image from 'next/image'
 const fetchProjectById = async (id) => {
   try {
     // Fetch the project by id from the Django API
-    const response = await fetch(`http://127.0.0.1:8000/api/projects/${id}/`);
+    const response = await fetch(`https://namfam-backend.onrender.com/api/projects/${id}/`);
 
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);

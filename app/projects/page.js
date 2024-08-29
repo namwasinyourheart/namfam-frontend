@@ -14,7 +14,7 @@ import Link from 'next/link';
 const fetchProjects = async () => {
   try {
     // Replace 'your-api-endpoint' with the actual endpoint URL
-    const response = await fetch('http://127.0.0.1:8000/api/projects/');
+    const response = await fetch('https://namfam-backend.onrender.com/api/projects/');
     
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
