@@ -30,7 +30,7 @@ export default function Home() {
 
           <Link
             style={{ backgroundColor: '#7843e9', fontWeight: 600 }}
-            href="/CV_Updated_1905.pdf"
+            href="/Resume_AIEngineer.pdf"
             className="px-4 py-4 text-white rounded-md hover:bg-blue-700 ml-4"
           >
             See My Resume
