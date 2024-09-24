@@ -14,9 +14,8 @@ const Chatbot = ({ onSaveConversation, selectedConversation }) => {
     "Nam's main skills?",
     "Nam's key projects?",
   ]);
-  const [isTypingEffectActive, setIsTypingEffectActive] = useState(true);
-  const typingIntervalRef = useRef(null);
-  const messageEndRef = useRef(null); // Ref for scrolling
+  const [isTypingEffectActive, setIsTypingEffectActive] = useState(true); // New state for typing effect
+  const typingIntervalRef = useRef(null); // Ref to store typing interval
 
   const initialMessageText = "Hello! What do you want to know about Nam?";
 
@@ -27,23 +26,17 @@ const Chatbot = ({ onSaveConversation, selectedConversation }) => {
       startTypingLoop();
     }
 
-    return () => clearInterval(typingIntervalRef.current);
+    return () => clearInterval(typingIntervalRef.current); // Cleanup interval on unmount
   }, [selectedConversation]);
 
-  useEffect(() => {
-    // Scroll to bottom whenever messages change
-    if (messageEndRef.current) {
-      messageEndRef.current.scrollIntoView({ behavior: "smooth" });
-    }
-  }, [messages]);
-
   const startTypingLoop = () => {
-    const typingDuration = 50;
+    const typingDuration = 100; // Duration between each character in ms
     let index = 0;
 
     typingIntervalRef.current = setInterval(() => {
       if (!isTypingEffectActive) {
         clearInterval(typingIntervalRef.current);
+        setMessages([{ text: initialMessageText, isUser: false }]); // Show full message
         return;
       }
 
@@ -54,46 +47,39 @@ const Chatbot = ({ onSaveConversation, selectedConversation }) => {
         clearInterval(typingIntervalRef.current);
         setTimeout(() => {
           index = 0;
-          startTypingLoop();
-        }, 1000);
+          const resetTyping = setInterval(() => {
+            if (!isTypingEffectActive) {
+              clearInterval(resetTyping);
+              setMessages([{ text: initialMessageText, isUser: false }]); // Show full message
+              return;
+            }
+
+            if (index < initialMessageText.length) {
+              setMessages([{ text: initialMessageText.slice(0, index + 1), isUser: false }]);
+              index++;
+            } else {
+              clearInterval(resetTyping);
+              setMessages([{ text: initialMessageText, isUser: false }]); // Finalize the message
+              startTypingLoop();
+            }
+          }, typingDuration);
+        }, 1000); // Wait for a second before restarting the typing effect
       }
     }, typingDuration);
   };
 
-  const stopTypingEffectAndShowFullMessage = () => {
-    setIsTypingEffectActive(false);
-    clearInterval(typingIntervalRef.current);
-    setMessages(prevMessages => {
-      const fullInitialMessage = { text: initialMessageText, isUser: false };
-      if (prevMessages.length === 0 || (prevMessages[0].text !== initialMessageText)) {
-        return [fullInitialMessage];
-      }
-      return prevMessages;
-    });
-  };
-
   const handleSend = async (message) => {
-    stopTypingEffectAndShowFullMessage();
+    setIsTypingEffectActive(false); // Disable typing effect
+    clearInterval(typingIntervalRef.current); // Clear the typing interval
 
-    setMessages(prevMessages => {
-      const newMessages = [...prevMessages];
-      const lastMessage = newMessages[newMessages.length - 1];
-
-      if (lastMessage && lastMessage.isUser && lastMessage.text === message) {
-        return newMessages;
-      }
-
-      return [
-        ...newMessages,
-        { text: message, isUser: true }
-      ];
-    });
+    // Display full initial message immediately
+    setMessages([{ text: initialMessageText, isUser: false }, { text: message, isUser: true }]);
 
     try {
       const response = await processMessage(message);
-      setMessages(prevMessages => [
+      setMessages((prevMessages) => [
         ...prevMessages,
-        { text: response, isUser: false }
+        { text: response, isUser: false },
       ]);
     } catch (error) {
       setError('Failed to generate response.');
@@ -107,43 +93,18 @@ const Chatbot = ({ onSaveConversation, selectedConversation }) => {
   };
 
   const handleClear = () => {
-    setMessages([{ text: initialMessageText, isUser: false }]);
+    setMessages([{ text: "Hello! What do you want to know about Nam?", isUser: false }]);
     setSuggestions([
       "Nam's work experience?",
       "Nam's main skills?",
       "Nam's key projects?",
     ]);
-    setIsTypingEffectActive(true);
-    startTypingLoop();
+    setIsTypingEffectActive(true); // Re-enable typing effect
+    startTypingLoop(); // Restart typing loop
   };
 
-  const handleSuggestionClick = async (suggestion) => {
-    stopTypingEffectAndShowFullMessage();
-
-    setMessages(prevMessages => {
-      const newMessages = [...prevMessages];
-      const lastMessage = newMessages[newMessages.length - 1];
-
-      if (lastMessage && lastMessage.isUser && lastMessage.text === suggestion) {
-        return newMessages;
-      }
-
-      return [
-        ...newMessages,
-        { text: suggestion, isUser: true }
-      ];
-    });
-
-    try {
-      const response = await processMessage(suggestion);
-      setMessages(prevMessages => [
-        ...prevMessages,
-        { text: response, isUser: false }
-      ]);
-    } catch (error) {
-      setError('Failed to generate response.');
-    }
-
+  const handleSuggestionClick = (suggestion) => {
+    handleSend(suggestion);
     setSuggestions(suggestions.filter(s => s !== suggestion));
   };
 
@@ -156,8 +117,6 @@ const Chatbot = ({ onSaveConversation, selectedConversation }) => {
       <div className="chatbox-content flex flex-col flex-grow h-0 overflow-hidden m-4">
         <div className="overflow-auto flex-grow px-4">
           <MessageList messages={messages} />
-          {/* This div will help in auto-scrolling */}
-          <div ref={messageEndRef} />
         </div>
 
         <div className="bg-transparent flex flex-wrap gap-2 justify-center rounded-lg">
