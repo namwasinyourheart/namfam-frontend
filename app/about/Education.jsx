@@ -1,5 +1,5 @@
 import React from 'react';
-import './TechnicalSkills.css';
+import './about.css';
 
 const Education = ({ education }) => {
   return (
@@ -17,7 +17,7 @@ const Education = ({ education }) => {
           <h3 className="text-xl font-semibold text-black">
             {education.degree} <span className="font-normal text-lg text-gray-600">at {education.institution}</span>
           </h3>
-          <h4 className="text-green-600">{education.duration}</h4>
+          <h4 className="text-blue-600">{education.duration}</h4>
           {/* <p className="text-gray-600">Cumulative CPA: {education.cumulative_cpa}</p> */}
           {/* <h5 className="text-gray-600 font-semibold">Graduation Thesis:</h5> */}
           {/* <p className="text-gray-600">{education.graduation_thesis.title} (Grade: {education.graduation_thesis.grade})</p> */}

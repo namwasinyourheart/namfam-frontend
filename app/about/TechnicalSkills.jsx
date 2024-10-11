@@ -5,18 +5,21 @@
 
 
 import React from 'react';
-import "./TechnicalSkills.css";
+import "./about.css";
 import { BrainCircuitIcon, MessageSquareIcon, CodeIcon, WrenchIcon } from 'lucide-react';
+
 
 const TechnicalSkills = ({ resume }) => {
   return (
-    <div className="technical-skills">
+    <div className="section">
       <h2 className="title">TECHNICAL SKILLS</h2>
       <div className="content">
         <div className="skills-container">
           {/* Machine Learning Section */}
+        <div className="relative pl-6">
           {resume.technical_skills.machine_learning && (
-            <div className="skill-item">
+            // <div className="relative mx-auto rounded-lg shadow-md bg-white border border-gray-200 p-5 mb-5 transition duration-300 hover:shadow-lg cursor-pointer">
+            <div className="skill-item shadow-md">
               <div className="skill-icon">
                 <BrainCircuitIcon />
               </div>
@@ -29,7 +32,7 @@ const TechnicalSkills = ({ resume }) => {
 
           {/* NLP/Speech Processing Section */}
           {resume.technical_skills.natural_language_processing && (
-            <div className="skill-item">
+            <div className="skill-item shadow-md">
               <div className="skill-icon">
                 <MessageSquareIcon />
               </div>
@@ -42,7 +45,7 @@ const TechnicalSkills = ({ resume }) => {
 
           {/* Languages Section */}
           {resume.technical_skills.languages_tools && (
-            <div className="skill-item">
+            <div className="skill-item shadow-md">
               <div className="skill-icon">
                 <CodeIcon />
               </div>
@@ -55,7 +58,7 @@ const TechnicalSkills = ({ resume }) => {
 
           {/* Frameworks/Tools Section */}
           {resume.technical_skills.libraries_frameworks && (
-            <div className="skill-item">
+            <div className="skill-item shadow-md">
               <div className="skill-icon">
                 <WrenchIcon />
               </div>
@@ -65,6 +68,7 @@ const TechnicalSkills = ({ resume }) => {
               </div>
             </div>
           )}
+        </div>
         </div>
       </div>
     </div>

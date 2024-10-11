@@ -1,10 +1,15 @@
-import React from 'react';
+"use client"
+
+// import React from 'react';
 import Experience from './Experience_css'
 import TechnicalSkills from './TechnicalSkills';
 import Education from './Education';
 import Intro from './Intro'
 import Certifications from './Certifications'
 import Others from './Others'
+import Summary from './Summary';
+
+import React, { useState, useEffect } from 'react';
 
 const getAboutInfo = async () => {
   try {
@@ -32,7 +37,6 @@ const getAboutInfo = async () => {
 };
 
 
-
 const AboutPage = () => {
   // Dummy data
   const resume = {
@@ -42,6 +46,11 @@ const AboutPage = () => {
       email: "itsnamfam@gmail.com",
       github: "github.com/namwasinyourheart",
     },
+    summary: [
+      "About 1 year of experience in AI engineer, focusing on speaker recognition/verification",
+      "Knowledgeable in ML, NLP, LLM, familiar with fine-tuning LLMs (Llama, Mistral), prompt engineer and developing RAG applications.",
+      "Understands web development, including frontend (ReactJS), backend (Django/FastAPI), databases (PostgreSQL/MongoDB), deployment(Docker)"
+    ], 
     professional_experience: [
       {
         title: "Founder/Blogger",
@@ -53,7 +62,7 @@ const AboutPage = () => {
         ]
       },
       {
-        title: "Technology Specialist",
+        title: "AI Specialist",
         company: "VINBIGDATA",
         duration: "Jul 2023 – Apr 2024",
         responsibilities: [
@@ -63,23 +72,23 @@ const AboutPage = () => {
         ]
       },
       {
-        title: "Technology Specialist",
-        company: "VINBIGDATA",
-        duration: "Jul 2023 – Apr 2024",
+        title: "AI Resident",
+        company: "VIETTEL GROUP",
+        duration: "Apr 2023 – Jun 2023",
         responsibilities: [
-          "Participated in intensive AI training courses on AI/ML/CV/NLP concepts.",
-          "Implemented capstone projects including aspect-based sentiment analysis and image captioning.",
-          "Engaged in a challenging internship specializing in speaker recognition."
+          "Be selected among many candidates nationwide after going through a 3-step admission process",
+          `Participated in intensive training courses focused on developing skills in data science and artificial intelligence; performed a mini-project about
+          dialect and gender identification for the Vietnamese speaker, aimed to compare effectiveness of various pre-trained deep audio
+          representations.`,
         ]
       },
       {
-        title: "Technology Specialist",
-        company: "VINBIGDATA",
-        duration: "Jul 2023 – Apr 2024",
+        title: "Research Engineer Intern",
+        company: "VIETTEL HIGH TECH",
+        duration: "Jul 2022 – Nov 2022",
         responsibilities: [
-          "Participated in intensive AI training courses on AI/ML/CV/NLP concepts.",
-          "Implemented capstone projects including aspect-based sentiment analysis and image captioning.",
-          "Engaged in a challenging internship specializing in speaker recognition."
+          "Learned the fundamentals of signal processing; developed a voice activity detection model for speech signals using LSTM",
+          "Researched to solve the problem of data drift when with real-world data"
         ]
       }
       // Add more experiences as needed
@@ -94,6 +103,7 @@ const AboutPage = () => {
       // natural_language_processing: ["CNN", "RNN/LSTM", "BERT"],
       speech_processing: ["Speaker Verification", "Text-to-Speech"],
       mlops: ["Docker", "FastAPI", "RestAPI"],
+      cloud_ai_platform: ["Vertex AI", "AWS Sagemaker"]
       // languages_tools: ["Python", "SQL", "Git"],
       // libraries_frameworks: ["Tensorflow", "Keras", "PyTorch"]
     },
@@ -124,16 +134,84 @@ const AboutPage = () => {
     ],
     others: {
       english: "TOEIC certificate with score 795 - issued by IIG Mar 2023",
-      chinese: "HSK …",
+      // chinese: "HSK …",
       activities: "Runner-up Iron Team"
     }
   };
+
+  const [loading, setLoading] = useState(true); // State for loading
+  const [professionalExperience, setProfessionalExperience] = useState([]); // Initialize state for professional experience
+
+  // Fetch professional experience data from the API
+  const getProfessionalExperienceData = async () => {
+    try {
+      const response = await fetch('http://localhost:8000/api/about'); // Adjust the endpoint to match your API
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      const data = await response.json();
+      setProfessionalExperience(data.professional_experiences); // Update state with professional experience data
+      // console.log("professionalExperience", professionalExperience)
+    } catch (error) {
+      console.error('Error fetching professional experience data:', error);
+    } finally {
+      setLoading(false); // Set loading to false once data is fetched
+    }
+  };
+
+
+  // // Call the API when the component mounts
+  // useEffect(() => {
+  //   getProfessionalExperienceData();
+    
+  // }, []);
+
+  // console.log("professionalExperience", professionalExperience)
+
+  // // Conditionally render content if data is available
+  // if (loading) {
+  //   return <div>Loading...</div>;
+  // }
+
+  // if (!professionalExperience.length) {
+  //   return <div>Error loading professional experience data</div>;
+  // }
+
+  const [resumeData, setResumeData] = useState(null);
+
+  const getResumeData = async () => {
+    try {
+      const response = await fetch('http://localhost:8000/api/resume');
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      const data = await response.json();
+      setResumeData(data.resume[0])
+
+    } catch(error) {
+      console.error('Error fetching professional experience data:', error);
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  useEffect(() => {
+    getResumeData();
+  }, []);
+
+  console.log("resumeData:", resumeData)
+
+  // Check if resumeData is null or doesn't contain expected properties
+  if (!resumeData || !resumeData.certifications) {
+  // return <div>Error: Resume data is not available</div>;
+  return null;
+  }
 
   return (
     // <div style={{ backgroundColor: '#4a90e2' }}>
       <div 
       // style={{ backgroundColor: '#4a90e2' }} 
-      className="px-4 py-8 w-2/3 mx-auto p-6">
+      className="px-4 py-8 w-3/5 mx-auto p-6 text-lg">
         <h1
           style={{ fontFamily: "Proxima Nova Bold, Helvetica Neue, Helvetica, Arial, sans-serif" }}
           className="text-4xl font-bold mb-4 text-center"
@@ -146,12 +224,17 @@ const AboutPage = () => {
         </p>
 
 
-      <div className=' bg-white shadow-md'>
-        <Intro/>
+      {/* <div className=' bg-white shadow-md'>
+        <Intro/>z
+      </div> */}
+
+      <div className='bg-white shadow-md'>
+        <Summary summary={resume.summary}/>
       </div>
 
       <div className='bg-white shadow-md'>
-        <Experience professionalExperience={resume.professional_experience}/>
+        <Experience professionalExperience={resumeData.professional_experience}/>
+        {/* <Experience professionalExperience={professionalExperience}/> */}
       </div>
 
       <div className="bg-white shadow-md">
@@ -159,11 +242,11 @@ const AboutPage = () => {
       </div>
 
       <div className='bg-white shadow-md'>
-        <Education education={resume.education} />
+        <Education education={resumeData.education} />
       </div>
 
       <div className='bg-white shadow-md'>
-        <Certifications certifications={resume.certifications}></Certifications>
+        <Certifications certifications={resumeData.certifications}></Certifications>
       </div>
 
       <div className='bg-white shadow-md'>

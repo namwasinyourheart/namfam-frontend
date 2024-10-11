@@ -1,5 +1,5 @@
 import React from 'react';
-import './TechnicalSkills.css'
+import './about.css'
 const Experience = ({ professionalExperience }) => {
   return (
     <section className="section">
@@ -23,10 +23,10 @@ const Experience = ({ professionalExperience }) => {
             </h3>
             
             {/* <h3 className="text-xl font-semibold py-2 text-gray-800">{experience.title} at {experience.company}</h3> */}
-            <h4 className="text-green-600">{experience.duration}</h4>
+            <h4 className="text-blue-600">{experience.duration}</h4>
             <ul className="text-gray-600 list-disc pl-5">
-              {experience.responsibilities.map((responsibility, idx) => (
-                <li key={idx}>{responsibility}</li>
+              {experience.responsibilities.split('\r\n').map((responsibility, idx) => (
+                <li key={idx}>{responsibility.trim()}</li>
               ))}
             </ul>
           </div>

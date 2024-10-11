@@ -29,13 +29,7 @@ const Intro = () => {
           </h3>
           <p className="text-base leading-[25px]">
             I leverage artificial intelligence to solve complex challenges and
-            drive innovation across various sectors. My portfolio showcases a
-            diverse range of projects where I apply advanced AI techniques to
-            address real-world problems, from developing predictive models that
-            enhance decision-making to creating intelligent systems that
-            automate tedious tasks. Each project demonstrates my commitment to
-            transforming cutting-edge AI concepts into practical solutions that
-            optimize performance and deliver measurable results. Explore my
+            drive innovation across various sectors. Explore my
             portfolio to see how I harness machine learning, natural language
             processing, and computer vision to revolutionize industries and
             improve lives.
