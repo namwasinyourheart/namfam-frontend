@@ -142,7 +142,8 @@ const AboutPage = () => {
 
         <div class="flex-[0_0_100%] max-w-full p-4">
           <h3 class="text-2xl mb-[15px] font-bold text-[var(--text-black-900)]">
-            I'm Nam Fam and <span class="text-[var(--skin-color)] text-red-400">AI Engineer</span>
+        <Experience professionalExperience={resumeData.professional_experience}/>
+            I&apos;m Nam Fam and <span class="text-[var(--skin-color)] text-red-400">AI Engineer</span>
           </h3>
           <p class="text-base leading-[25px]">
           I leverage artificial intelligence to solve complex challenges and drive innovation across various sectors. My portfolio showcases a diverse range of projects where I apply advanced AI techniques to address real-world problems, from developing predictive models that enhance decision-making to creating intelligent systems that automate tedious tasks. Each project demonstrates my commitment to transforming cutting-edge AI concepts into practical solutions that optimize performance and deliver measurable results. Explore my portfolio to see how I harness machine learning, natural language processing, and computer vision to revolutionize industries and improve lives.

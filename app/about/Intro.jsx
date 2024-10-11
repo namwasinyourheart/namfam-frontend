@@ -21,7 +21,7 @@ const Intro = () => {
       <div className="flex-1 flex flex-col justify-between">
         <div>
           <h3 className="text-2xl mb-[15px] font-bold text-[var(--text-black-900)]">
-            I'm Nam Fam
+            I&apos;m Nam Fam
              {/* and{' '}
             <span className="text-[var(--skin-color)] text-red-400">
               AI Engineer

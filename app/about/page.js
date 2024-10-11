@@ -118,10 +118,10 @@ const AboutPage = () => {
       }
     },
     side_projects: [
-      {
-        title: "Voice Cloning",
-        details: "Developed a voice assistant using IBM Watson and GPT-3. Integrated IBM Watson's Speech-to-Text with GPT-3 for intelligent responses."
-      },
+      // {
+      //   title: "Voice Cloning",
+      //   details: "Developed a voice assistant using IBM Watson and GPT-3. Integrated IBM Watson's Speech-to-Text with GPT-3 for intelligent responses."
+      // },
       {
         title: "Real-Time Stock Investing Advisor",
         details: "Built pipelines for feature extraction and inference using Bytewax, Qdrant, and LLMs."
