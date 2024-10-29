@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import "./contact.css"
+// import "./contact.css"
 
 export default function Contact() {
   return (
