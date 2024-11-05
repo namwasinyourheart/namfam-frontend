@@ -1,5 +1,6 @@
 import React from 'react';
 import avatar from './avatar.jpg';
+import avatar_wc from './avatar-wcpng.png'
 import Link from 'next/link';
 import Image from 'next/image';
 
@@ -9,7 +10,7 @@ const Intro = () => {
       {/* Left column for image */}
       <div className="flex-1 md:max-w-[30%] w-full mb-4 md:mb-0 md:mr-6">
         <Image
-          src={avatar}
+          src={avatar_wc}
           alt="AI Engineer"
           className="w-full h-auto object-cover rounded-lg shadow-md"
         //   width={400} // You can adjust width and height to match your image's resolution

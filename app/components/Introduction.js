@@ -73,7 +73,7 @@ const Introduction = () => {
 
         <Link
           style={{ backgroundColor: '#7843e9', fontWeight: 600 }}
-          href="/Resume_AIEngineer.pdf"
+          href="/Resume_AIEngineer_1.pdf"
           className="px-4 py-4 text-white rounded-md hover:bg-blue-700 ml-4"
         >
           See My Resume

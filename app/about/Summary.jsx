@@ -12,8 +12,9 @@ const Summary = ({summary}) => {
                 <div className="relative mx-auto rounded-lg shadow-md bg-white border border-gray-200 p-5 mb-5 transition duration-300 hover:shadow-lg cursor-pointer pl-8">
 
                     <ul className="list-disc">
-                        {summary.map((item, index) => (
+                        {summary.split('\r\n').map((item, index) => (
                             <li key={index}>{item}</li>
+                            
                         ))}
                     </ul>
                 </div>

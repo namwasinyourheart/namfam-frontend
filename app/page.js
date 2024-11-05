@@ -5,7 +5,7 @@ import Chatbot from './components/Chatbot';
 
 export default function Home() {
   return (
-    <div className="flex flex-col md:flex-row justify-center items-center h-full bg-white-400">
+    <div className="bg-yellow-400 flex flex-col md:flex-row justify-center items-center h-full bg-white-400">
       {/* Column 1 */}
       <Introduction />
 

@@ -6,13 +6,14 @@ import { useParams } from 'next/navigation';
 
 const fetchProjectById = async (id) => {
   try {
-    const reponse = await fetch(`http://localhost:8000/api/projects/${id}`);
+    // const response = await fetch(`http://localhost:8000/api/projects/${id}`);
+    const response = await fetch(`https://namfam-backend.onrender.com/api/projects/${id}`);
 
-    if (!reponse.ok) {
-      throw new Error(`HTTP error! status: ${reponse.status}`);
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
     }
 
-    const project = await reponse.json();
+    const project = await response.json();
     return project;
 
   

@@ -47,9 +47,9 @@ const AboutPage = () => {
       github: "github.com/namwasinyourheart",
     },
     summary: [
-      "About 1 year of experience in AI engineer, focusing on speaker recognition/verification",
+      "Have 1+ year of experience in AI engineer, focusing on speaker recognition/verification",
       "Knowledgeable in ML, NLP, LLM, familiar with fine-tuning LLMs (Llama, Mistral), prompt engineer and developing RAG applications.",
-      "Understands web development, including frontend (ReactJS), backend (Django/FastAPI), databases (PostgreSQL/MongoDB), deployment(Docker)"
+      "Understands web development, including frontend (ReactJS), backend (Django/FastAPI), databases (PostgreSQL/MongoDB)"
     ], 
     professional_experience: [
       {
@@ -95,9 +95,9 @@ const AboutPage = () => {
     ],
     technical_skills: {
       machine_learning: ["Regression", "Decision Tree", "SVM", "Clustering", "Bagging/Boosting"],
-    natural_language_processing: ["BERT", "T5", "LLMs Fine-tuning", "RAG", "Speaker Recognition/Verification"],
-    languages_tools: ["Python", "SQL", "Javascript"],
-    libraries_frameworks: ["Tensorflow", "Keras", "PyTorch", "Scikit-learn", "Docker", "FastAPI", "Git"],
+      natural_language_processing: ["BERT", "T5", "LLMs Fine-tuning", "RAG", "Speaker Recognition/Verification"],
+      languages_tools: ["Python", "SQL", "Javascript"],
+      libraries_frameworks: ["Tensorflow", "Keras", "PyTorch", "Scikit-learn", "Docker", "FastAPI", "Git", "AWS Sagemaker"],
       data_science: ["Statistical Analysis", "Data Visualization"],
       // machine_learning: ["Regression", "Decision Tree", "Ensemble Methods"],
       // natural_language_processing: ["CNN", "RNN/LSTM", "BERT"],
@@ -181,7 +181,8 @@ const AboutPage = () => {
 
   const getResumeData = async () => {
     try {
-      const response = await fetch('http://localhost:8000/api/resume');
+      // const response = await fetch('http://localhost:8000/api/resume');
+      const response = await fetch('https://namfam-backend.onrender.com/api/resume');
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
@@ -229,7 +230,7 @@ const AboutPage = () => {
       </div> */}
 
       <div className='bg-white shadow-md'>
-        <Summary summary={resume.summary}/>
+        <Summary summary={resumeData.summary}/>
       </div>
 
       <div className='bg-white shadow-md'>
@@ -250,7 +251,7 @@ const AboutPage = () => {
       </div>
 
       <div className='bg-white shadow-md'>
-        <Others others={resume.others}></Others>
+        <Others others={resumeData.others}></Others>
       </div>
 
       </div>

@@ -3,6 +3,13 @@
 import { useParams } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image'
+import ReactMarkdown from 'react-markdown';
+import Markdown from "markdown-to-jsx";
+// import Markdown from 'react-markdown'
+import remarkGfm from 'remark-gfm';
+import rehypeRaw from 'rehype-raw';
+// import { useEffect, useState } from "react";
+import Index from './ProjectDetails';
 
 // const fetchProjects = async () => {
 //   const response = await fetch('/projects.jsonl');
@@ -15,7 +22,8 @@ import Image from 'next/image'
 const fetchProjectById = async (id) => {
   try {
     // Fetch the project by id from the Django API
-    const response = await fetch(`https://namfam-backend.onrender.com/api/projects/${id}/`);
+    const response = await fetch(`http://localhost:8000/api/projects/${id}`);
+    // const response = await fetch(`https://namfam-backend.onrender.com/api/projects/${id}/`);
 
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
@@ -58,6 +66,20 @@ export default function ProjectDetail() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedImage, setSelectedImage] = useState('');
+
+
+  const [content, setContent] = useState("");
+
+  useEffect(() => {
+      // Fetch Markdown content from a local file
+      fetch("Page.md")
+          .then((res) => res.text())
+          .then((text) => setContent(text))
+          .catch((error) => console.error("Error fetching the markdown file:", error));
+  }, []);
 
   // useEffect(() => {
   //   const loadProjects = async () => {
@@ -102,10 +124,25 @@ export default function ProjectDetail() {
     setCurrentImageIndex(index);
   };
 
+
+
+  const openModal = (image) => {
+    setSelectedImage(image);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setSelectedImage('');
+  };
+
+
   return (
-    <div className="px-4 py-8 w-full max-w-4xl mx-auto">
-      <h1 className="text-4xl font-bold mb-4">{project.title}</h1>
-      <p className="text-lg mb-6">{project.description}</p>
+    <div className="px-4 py-8 w-full max-w-5xl mx-auto">
+      {/* <h1 className="text-4xl font-bold mb-4 text-center">{project.title}</h1>
+      <p className="text-lg mb-6">{project.description}</p> */}
+      
+      <Index></Index>
 
       {/* Horizontal Scroll Container */}
       <div className="relative mb-">
@@ -123,6 +160,7 @@ export default function ProjectDetail() {
                 height={600}
                 alt={`Project image ${index + 1}`}
                 className="w-full h-64 object-cover flex-shrink-0" // Ensure each image is a single control width
+                onClick={() => openModal(image)} // Open modal on click
               />
             ))}
           </div>
@@ -139,26 +177,46 @@ export default function ProjectDetail() {
           ))}
         </div>
       </div>
-
-      <div className="prose mb-8">
-        <p>{project.content}</p>
-      </div>
+      
+      {/* Modal for zooming image */}
+      {isModalOpen && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-75">
+          <div className="relative">
+            {/* Styled close button */}
+            <button
+              className="absolute top-4 right-4 bg-gray-800 text-white rounded w-8 h-8 flex items-center justify-center shadow-lg hover:bg-gray-700 transition duration-300"
+              onClick={closeModal}
+            >
+              &times;
+            </button>
+            <Image
+              src={selectedImage}
+              width={1200} // Adjust size as needed
+              height={900} // Adjust size as needed
+              alt="Zoomed image"
+              className="max-w-full max-h-full" // Ensure it fits the screen
+            />
+          </div>
+        </div>
+      )}
 
       {/* Key Features */}
       <div className="mb-6">
-        <h2 className="text-2xl font-bold mb-2">Key Features</h2>
+        <h2 className="text-2xl font-semibold mb-2">Key Features</h2>
         <ul className="list-disc pl-5">
-          {project.keyFeatures.keyFeatures.map((feature, index) => (
+          {project.keyFeatures}
+          {/* {project.keyFeatures.keyFeatures.map((feature, index) => (
             <li key={index}>{feature}</li>
-          ))}
+          ))} */}
         </ul>
       </div>
 
       {/* Technologies Used */}
       <div className="mb-8">
-        <h2 className="text-xl font-semibold mb-2">Technologies Used:</h2>
+        <h2 className="text-2xl font-semibold mb-2">Technologies Used:</h2>
         <div className="flex flex-wrap gap-2">
-          {project.technologies.technologies.map((tech, index) => (
+          {project.technologies}
+          {/* {project.technologies.technologies.map((tech, index) => (
             <span
               key={index}
               className="px-3 py-1 rounded-full text-white"
@@ -172,7 +230,7 @@ export default function ProjectDetail() {
             >
               {tech}
             </span>
-          ))}
+          ))} */}
         </div>
         
       </div>
@@ -184,6 +242,33 @@ export default function ProjectDetail() {
         <a href={project.repoLink} className="text-blue-600 hover:underline" target="_blank" rel="noopener noreferrer">
           View Repository
         </a>
+      </div>
+
+      {/* Details */}
+      <div className="mb-8">
+        <h2 className="text-2xl font-semibold mb-2">Details:</h2>
+        <ReactMarkdown 
+          remarkPlugins={[remarkGfm]}
+        // rehypePlugins={[rehypeRaw]}
+      >
+
+        {project.content}
+        {/* {content} */}
+        </ReactMarkdown>
+        
+        {/* <Markdown 
+          // remarkPlugins={[remarkGfm]}
+        // rehypePlugins={[rehypeRaw]}
+      >
+        
+        {`
+        
+        `}
+        {project.content}
+        </Markdown> */}
+
+        {/* <p>{project.content}</p> */}
+
       </div>
     </div>
   );
