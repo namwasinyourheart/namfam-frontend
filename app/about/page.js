@@ -97,7 +97,7 @@ const AboutPage = () => {
       machine_learning: ["Regression", "Decision Tree", "SVM", "Clustering", "Bagging/Boosting"],
       natural_language_processing: ["BERT", "T5", "LLMs Fine-tuning", "RAG", "Speaker Recognition/Verification"],
       languages_tools: ["Python", "SQL", "Javascript"],
-      libraries_frameworks: ["Tensorflow", "Keras", "PyTorch", "Scikit-learn", "Docker", "FastAPI", "Git", "AWS Sagemaker"],
+      libraries_frameworks: ["Tensorflow", "PyTorch", "Scikit-learn", "NTTK", "Gensim", "SpaCy", "Docker", "FastAPI", "Git", "AWS Sagemaker"],
       data_science: ["Statistical Analysis", "Data Visualization"],
       // machine_learning: ["Regression", "Decision Tree", "Ensemble Methods"],
       // natural_language_processing: ["CNN", "RNN/LSTM", "BERT"],
@@ -239,7 +239,7 @@ const AboutPage = () => {
       </div>
 
       <div className="bg-white shadow-md">
-        <TechnicalSkills resume={resume} />
+        <TechnicalSkills technicalSkills={resumeData.technical_skills} />
       </div>
 
       <div className='bg-white shadow-md'>

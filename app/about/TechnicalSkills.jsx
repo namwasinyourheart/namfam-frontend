@@ -9,66 +9,31 @@ import "./about.css";
 import { BrainCircuitIcon, MessageSquareIcon, CodeIcon, WrenchIcon } from 'lucide-react';
 
 
-const TechnicalSkills = ({ resume }) => {
+const TechnicalSkills = ({ technicalSkills }) => {
   return (
     <div className="section">
       <h2 className="title">TECHNICAL SKILLS</h2>
       <div className="content">
         <div className="skills-container">
-          {/* Machine Learning Section */}
-        <div className="relative pl-6">
-          {resume.technical_skills.machine_learning && (
-            // <div className="relative mx-auto rounded-lg shadow-md bg-white border border-gray-200 p-5 mb-5 transition duration-300 hover:shadow-lg cursor-pointer">
-            <div className="skill-item shadow-md">
-              <div className="skill-icon">
-                <BrainCircuitIcon />
-              </div>
-              <div className="skill-content">
-                <h3>Machine Learning</h3>
-                <p>{resume.technical_skills.machine_learning.join(', ')}</p>
-              </div>
-            </div>
-          )}
-
-          {/* NLP/Speech Processing Section */}
-          {resume.technical_skills.natural_language_processing && (
-            <div className="skill-item shadow-md">
-              <div className="skill-icon">
-                <MessageSquareIcon />
-              </div>
-              <div className="skill-content">
-                <h3>NLP/Speech Processing</h3>
-                <p>{resume.technical_skills.natural_language_processing.join(', ')}</p>
+          {/* Loop through the technical skills */}
+          {technicalSkills && technicalSkills.map(skill => (
+            <div className="relative pl-6" key={skill.id}>
+              <div className="skill-item shadow-md">
+                <div className="skill-icon">
+                  {/* Conditionally render icons based on category using includes */}
+                  {skill.category.includes("Machine Learning") && <BrainCircuitIcon />}
+                  {skill.category.includes("NLP") && <MessageSquareIcon />}
+                  {skill.category.includes("Languages") && <CodeIcon />} {/* Icon for Languages */}
+                  {skill.category.includes("Framework") && <WrenchIcon />} {/* Icon for Frameworks/Tools */}
+                  {/* Add more icons for other categories if necessary */}
+                </div>
+                <div className="skill-content">
+                  <h3>{skill.category}</h3>
+                  <p>{skill.skill}</p>
+                </div>
               </div>
             </div>
-          )}
-
-          {/* Languages Section */}
-          {resume.technical_skills.languages_tools && (
-            <div className="skill-item shadow-md">
-              <div className="skill-icon">
-                <CodeIcon />
-              </div>
-              <div className="skill-content">
-                <h3>Languages</h3>
-                <p>{resume.technical_skills.languages_tools.join(', ')}</p>
-              </div>
-            </div>
-          )}
-
-          {/* Frameworks/Tools Section */}
-          {resume.technical_skills.libraries_frameworks && (
-            <div className="skill-item shadow-md">
-              <div className="skill-icon">
-                <WrenchIcon />
-              </div>
-              <div className="skill-content">
-                <h3>Frameworks/Tools</h3>
-                <p>{resume.technical_skills.libraries_frameworks.join(', ')}</p>
-              </div>
-            </div>
-          )}
-        </div>
+          ))}
         </div>
       </div>
     </div>
@@ -76,6 +41,75 @@ const TechnicalSkills = ({ resume }) => {
 };
 
 export default TechnicalSkills;
+
+
+// const TechnicalSkills = ({ resume }) => {
+//   return (
+//     <div className="section">
+//       <h2 className="title">TECHNICAL SKILLS</h2>
+//       <div className="content">
+//         <div className="skills-container">
+//           {/* Machine Learning Section */}
+//         <div className="relative pl-6">
+//           {resume.technical_skills.machine_learning && (
+//             // <div className="relative mx-auto rounded-lg shadow-md bg-white border border-gray-200 p-5 mb-5 transition duration-300 hover:shadow-lg cursor-pointer">
+//             <div className="skill-item shadow-md">
+//               <div className="skill-icon">
+//                 <BrainCircuitIcon />
+//               </div>
+//               <div className="skill-content">
+//                 <h3>Machine Learning</h3>
+//                 <p>{resume.technical_skills.machine_learning.join(', ')}</p>
+//               </div>
+//             </div>
+//           )}
+
+//           {/* NLP/Speech Processing Section */}
+//           {resume.technical_skills.natural_language_processing && (
+//             <div className="skill-item shadow-md">
+//               <div className="skill-icon">
+//                 <MessageSquareIcon />
+//               </div>
+//               <div className="skill-content">
+//                 <h3>NLP/Speech Processing</h3>
+//                 <p>{resume.technical_skills.natural_language_processing.join(', ')}</p>
+//               </div>
+//             </div>
+//           )}
+
+//           {/* Languages Section */}
+//           {resume.technical_skills.languages_tools && (
+//             <div className="skill-item shadow-md">
+//               <div className="skill-icon">
+//                 <CodeIcon />
+//               </div>
+//               <div className="skill-content">
+//                 <h3>Languages</h3>
+//                 <p>{resume.technical_skills.languages_tools.join(', ')}</p>
+//               </div>
+//             </div>
+//           )}
+
+//           {/* Frameworks/Tools Section */}
+//           {resume.technical_skills.libraries_frameworks && (
+//             <div className="skill-item shadow-md">
+//               <div className="skill-icon">
+//                 <WrenchIcon />
+//               </div>
+//               <div className="skill-content">
+//                 <h3>Frameworks/Tools</h3>
+//                 <p>{resume.technical_skills.libraries_frameworks.join(', ')}</p>
+//               </div>
+//             </div>
+//           )}
+//         </div>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default TechnicalSkills;
 
 
   // Dummy data
