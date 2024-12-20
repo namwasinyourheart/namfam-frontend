@@ -253,11 +253,11 @@ const closeModal = () => {
         </section> */}
 
         <section className="mt-8">
-          <h2 className="text-3xl font-bold mb-4 border-l-4 border-green-400 pl-4">Project Goal</h2>
-          {projectDetails?.projectGoal ? ( // Check if projectGoal exists
-              <p className='ml-4'>{projectDetails.projectGoal}</p>
+          <h2 className="text-3xl font-bold mb-4 border-l-4 border-green-400 pl-4">Overview</h2>
+          {projectDetails?.overview ? ( // Check if projectGoal exists
+              <p className='ml-4'>{projectDetails.overview}</p>
           ) : (
-              <p>No project goal information available.</p> // Fallback if projectGoal does not exist
+              <p>No project overview information available.</p> // Fallback if projectGoal does not exist
           )}
       </section>
 
