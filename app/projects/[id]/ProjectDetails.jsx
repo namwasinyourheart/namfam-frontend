@@ -315,6 +315,31 @@ const closeModal = () => {
           )}
         </section> */}
 
+        <section className="mt-8">
+            {projectDetails?.hightlight && projectDetails.hightlight.length > 0 ? (
+                <>
+                    <h2 className="text-3xl font-bold mb-4 border-l-4 border-green-400 pl-4">
+                        Hightlights
+                    </h2>
+                    <ul className="list-disc list-inside space-y-2 ml-4">
+                        {projectDetails.hightlight.split('\r\n').map((hightlight, index) => {
+                            const [title, ...descriptionParts] = hightlight.split(':');
+                            const description = descriptionParts.join(':').trim(); // Join back any additional colons
+                            return (
+                                <li key={index}>
+                                    <strong>{title.trim()}:</strong> {description}
+                                </li>
+                            );
+                        })}
+                    </ul>
+                </>
+            ) : (
+                // <p>No key features available.</p> // Fallback if no key features exist
+                <></>
+            )}
+        </section>
+
+
 
         <section className="mt-8">
             {projectDetails?.features && projectDetails.features.length > 0 ? (
