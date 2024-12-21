@@ -319,7 +319,7 @@ const closeModal = () => {
             {projectDetails?.hightlight && projectDetails.hightlight.length > 0 ? (
                 <>
                     <h2 className="text-3xl font-bold mb-4 border-l-4 border-green-400 pl-4">
-                        Hightlights
+                        Highlights
                     </h2>
                     <ul className="list-disc list-inside space-y-2 ml-4">
                         {projectDetails.hightlight.split('\r\n').map((hightlight, index) => {
@@ -483,7 +483,7 @@ const Index = () => {
           setProject(selectedProject);
           // console.log('project:', project)
         } else {
-          setError(new Error('Project not found'));
+          setError(new Error('Loading project...'));
         }
 
       } catch (error) {
