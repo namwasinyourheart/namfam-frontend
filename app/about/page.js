@@ -1,7 +1,7 @@
 "use client"
 
 // import React from 'react';
-import Experience from './Experience_css'
+import Experience from './Experience'
 import TechnicalSkills from './TechnicalSkills';
 import Education from './Education';
 import Intro from './Intro'
@@ -221,7 +221,7 @@ const AboutPage = () => {
         </h1>
 
         <p className="mb-8 text-center">
-        Here you will find more information about me, what I do, and my current skills mostly in terms of programming and technology
+        Discover more about who I am, what I do, and the skills I bring to programming and technology
         </p>
 
 

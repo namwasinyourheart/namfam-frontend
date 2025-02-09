@@ -51,7 +51,7 @@ const Introduction = () => {
         Hi. I&apos;m <span className="highlight">{currentText}</span> {/* Highlighting the current text */}
       </h1>
       <div style={{ fontSize: '1.5rem', marginBottom: '4rem' }} className="text-xl mb-8">
-        I leverage artificial intelligence to solve complex challenges and drive innovation.
+        I leverage AI to solve complex challenges and drive innovation.
         <p>Explore my portfolio to see how I turn cutting-edge AI concepts into practical solutions.</p>
       </div>
 
@@ -59,14 +59,14 @@ const Introduction = () => {
         <Link
           style={{ backgroundColor: '#7843e9', fontWeight: 600 }}
           href="/about"
-          className="px-4 py-4 text-white rounded-md hover:bg-blue-700"
+          className="px-4 py-4 text-white rounded-md hover:bg-blue-700 text-xl"
         >
           More About Me
         </Link>
         <Link
           style={{ backgroundColor: '#7843e9', fontWeight: 600 }}
           href="/projects"
-          className="px-4 py-4 text-white rounded-md hover:bg-blue-700 ml-4"
+          className="px-4 py-4 text-white rounded-md hover:bg-blue-700 ml-4 text-xl"
         >
           See My Projects
         </Link>
@@ -74,7 +74,7 @@ const Introduction = () => {
         <Link
           style={{ backgroundColor: '#7843e9', fontWeight: 600 }}
           href="/Resume_AIEngineer_1.pdf"
-          className="px-4 py-4 text-white rounded-md hover:bg-blue-700 ml-4"
+          className="px-4 py-4 text-white rounded-md hover:bg-blue-700 ml-4 text-xl"
         >
           See My Resume
         </Link>

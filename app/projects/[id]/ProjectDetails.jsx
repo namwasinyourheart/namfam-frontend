@@ -278,26 +278,6 @@ const closeModal = () => {
           </ul>
         </section> */}
 
-
-        <section className="mt-8">
-            <h2 className="text-3xl font-bold mb-4 border-l-4 border-green-400 pl-4">Tech Stack</h2>
-            {projectDetails?.techStack ? (
-                <ul className="list-disc list-inside space-y-2 ml-4">
-                    {projectDetails.techStack.split('\n').map((line, index) => {
-                        const [name, ...descriptionParts] = line.split(':');
-                        const description = descriptionParts.join(':').trim(); // Join the parts back in case of additional colons
-                        return (
-                            <li key={index}>
-                                <strong>{name.trim()}:</strong> {description}
-                            </li>
-                        );
-                    })}
-                </ul>
-            ) : (
-                <p>No tech stack information available.</p> // Fallback if no tech stack data is present
-            )}
-        </section>
-
         
 
         {/* <section className="mt-8">
@@ -362,6 +342,26 @@ const closeModal = () => {
             ) : (
                 // <p>No key features available.</p> // Fallback if no key features exist
                 <></>
+            )}
+        </section>
+
+
+        <section className="mt-8">
+            <h2 className="text-3xl font-bold mb-4 border-l-4 border-green-400 pl-4">Tech Stack</h2>
+            {projectDetails?.techStack ? (
+                <ul className="list-disc list-inside space-y-2 ml-4">
+                    {projectDetails.techStack.split('\n').map((line, index) => {
+                        const [name, ...descriptionParts] = line.split(':');
+                        const description = descriptionParts.join(':').trim(); // Join the parts back in case of additional colons
+                        return (
+                            <li key={index}>
+                                <strong>{name.trim()}:</strong> {description}
+                            </li>
+                        );
+                    })}
+                </ul>
+            ) : (
+                <p>No tech stack information available.</p> // Fallback if no tech stack data is present
             )}
         </section>
 

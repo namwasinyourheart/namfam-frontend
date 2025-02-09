@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-// import { ReactComponent as SendIcon } from '../../assets/send-button.svg';
-import sendIconPath from '../../assets/send-button.svg';
 
 import { Send } from "lucide-react";
 

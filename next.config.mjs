@@ -3,7 +3,10 @@
 
 const nextConfig = {
     images: {
-      domains: ['mattfarley.ca', 'drive.google.com'],
+      domains: [
+        'mattfarley.ca', 
+        'drive.google.com', 
+        'avatars.githubusercontent.com'],
     },
   };
   
