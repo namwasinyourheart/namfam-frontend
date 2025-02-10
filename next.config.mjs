@@ -3,10 +3,7 @@
 
 const nextConfig = {
     images: {
-      domains: [
-        'mattfarley.ca', 
-        'drive.google.com', 
-        'avatars.githubusercontent.com'],
+      domains: ['mattfarley.ca', 'drive.google.com', 'github.com', 'https://raw.githubusercontent.com/'],
     },
   };
   
