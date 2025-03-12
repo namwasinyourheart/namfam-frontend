@@ -247,54 +247,20 @@ const closeModal = () => {
 
       <main className="mt-8">
 
-        {/* <section>
-          <h2 className="text-3xl font-bold mb-4 border-l-4 border-green-400 pl-4">Overview</h2>
-          <p className="mb-4">{projectDetails.overview}</p>
-        </section> */}
 
         <section className="mt-8">
-          <h2 className="text-3xl font-bold mb-4 border-l-4 border-green-400 pl-4">Overview</h2>
           {projectDetails?.overview ? ( // Check if projectGoal exists
-              <p className='ml-4'>{projectDetails.overview}</p>
-          ) : (
-              // <p>No project overview information available.</p> // Fallback if projectGoal does not exist
-              <></>
-          )}
+            <>
+                <h2 className="text-3xl font-bold mb-4 border-l-4 border-green-400 pl-4">Overview</h2>
+                <p className='ml-4'>{projectDetails.overview}</p>
+            </>
+            ) : (
+                // <p>No project overview information available.</p> // Fallback if projectGoal does not exist
+                <></>
+            )
+          }
       </section>
 
-
-        {/* <section className="mt-8">
-          <h2 className="text-3xl font-bold mb-4 border-l-4 border-green-400 pl-4">Project Goals</h2>
-          <p>{projectDetails.projectGoal}</p>
-        </section> */}
-
-        {/* <section className="mt-8">
-          <h2 className="text-3xl font-bold mb-4 border-l-4 border-green-400 pl-4">Tech Stack</h2>
-          <ul className="list-disc list-inside space-y-2">
-            {projectDetails.techStack.map((tech, index) => (
-              <li key={index}>
-                <strong>{tech.name}:</strong> {tech.description}
-              </li>
-            ))}
-          </ul>
-        </section> */}
-
-        
-
-        {/* <section className="mt-8">
-          <h2 className="text-3xl font-bold mb-4 border-l-4 border-green-400 pl-4">Tech Stack</h2>
-          {projectDetails?.techStack?.length > 0 ? (
-            <ul className="list-disc list-inside space-y-2">
-              {projectDetails.techStack.map((tech, index) => (
-                <li key={index}>
-                  <strong>{tech.name}:</strong> {tech.description}
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <p>No tech stack information available.</p> // Fallback if no tech stack data is present
-          )}
-        </section> */}
 
         <section className="mt-8">
             {projectDetails?.hightlight && projectDetails.hightlight.length > 0 ? (
