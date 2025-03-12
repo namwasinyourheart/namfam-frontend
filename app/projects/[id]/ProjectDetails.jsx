@@ -257,7 +257,8 @@ const closeModal = () => {
           {projectDetails?.overview ? ( // Check if projectGoal exists
               <p className='ml-4'>{projectDetails.overview}</p>
           ) : (
-              <p>No project overview information available.</p> // Fallback if projectGoal does not exist
+              // <p>No project overview information available.</p> // Fallback if projectGoal does not exist
+              <></>
           )}
       </section>
 
@@ -361,7 +362,8 @@ const closeModal = () => {
                     })}
                 </ul>
             ) : (
-                <p>No tech stack information available.</p> // Fallback if no tech stack data is present
+                // <p>No tech stack information available.</p> // Fallback if no tech stack data is present
+                <></>
             )}
         </section>
 
