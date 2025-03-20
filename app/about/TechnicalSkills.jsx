@@ -6,7 +6,14 @@
 
 import React from 'react';
 import "./about.css";
-import { BrainCircuitIcon, MessageSquareIcon, CodeIcon, WrenchIcon } from 'lucide-react';
+import { 
+  BrainCircuitIcon, 
+  MessageSquareIcon, 
+  CodeIcon, 
+  WrenchIcon, 
+  Settings2Icon,  // Icon for MLOps
+  CloudIcon       // Icon for Cloud
+} from 'lucide-react';
 
 
 const TechnicalSkills = ({ technicalSkills }) => {
@@ -20,12 +27,13 @@ const TechnicalSkills = ({ technicalSkills }) => {
             <div className="relative pl-6" key={skill.id}>
               <div className="skill-item shadow-md">
                 <div className="skill-icon">
-                  {/* Conditionally render icons based on category using includes */}
+                  {/* Conditionally render icons based on category */}
                   {skill.category.includes("Machine Learning") && <BrainCircuitIcon />}
                   {skill.category.includes("NLP") && <MessageSquareIcon />}
-                  {skill.category.includes("Languages") && <CodeIcon />} {/* Icon for Languages */}
-                  {skill.category.includes("Framework") && <WrenchIcon />} {/* Icon for Frameworks/Tools */}
-                  {/* Add more icons for other categories if necessary */}
+                  {skill.category.includes("Languages") && <CodeIcon />} 
+                  {skill.category.includes("Framework") && <WrenchIcon />} 
+                  {skill.category.includes("MLOps") && <Settings2Icon />}  {/* Icon for MLOps */}
+                  {skill.category.includes("Cloud") && <CloudIcon />}      {/* Icon for Cloud */}
                 </div>
                 <div className="skill-content">
                   <h3>{skill.category}</h3>
