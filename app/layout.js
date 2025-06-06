@@ -64,7 +64,8 @@ export default function RootLayout({ children }) {
                 </svg>
               </Link>
               <Link
-                href="https://www.linkedin.com/in/namfam/"
+                // href="https://www.linkedin.com/in/namfam/"
+                href="/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-1.5 bg-blue-600 rounded-md hover:bg-blue-500"
