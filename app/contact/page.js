@@ -2,8 +2,8 @@ import Link from "next/link";
 
 export default function Contact() {
   return (
-    <div className="px-4 sm:px-6 py-8 sm:py-10 w-full max-w-3xl mx-auto">
-      <h1 className="text-4xl font-bold mb-6 text-center">Contact Me</h1>
+    <div className="px-4 sm:px-6 pt-12 sm:pt-16 pb-8 sm:pb-10 w-full max-w-3xl mx-auto">
+      <h1 className="text-3xl sm:text-4xl font-bold mb-4 text-center">Contact Me</h1>
       <p className="text-lg text-center mb-6">
         Feel free to reach out via email at{" "}
         <a href="mailto:itsnamfam@gmail.com" className="text-blue-600 hover:underline">

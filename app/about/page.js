@@ -36,7 +36,7 @@ const SectionHeader = ({ icon: Icon, title, delay }) => (
 );
 
 const TableOfContents = ({ activeSection }) => (
-  <nav className="hidden lg:flex flex-col gap-1 sticky self-start" style={{ top: '4rem' }}>
+  <nav className="hidden xl:flex flex-col gap-1 fixed left-[max(1rem,calc(50%-40rem-2.5rem))] top-1/2 -translate-y-1/2 z-50">
     {sections.map((section) => {
       const Icon = section.icon;
       const isActive = activeSection === section.id;
@@ -179,18 +179,11 @@ const AboutPage = () => {
           from { opacity: 0; }
           to { opacity: 1; }
         }
-        @keyframes heroSlideDown {
-          from { opacity: 0; transform: translateY(-20px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
         .animate-fadeInUp {
           animation: fadeInUp 0.6s ease-out both;
         }
         .animate-fadeIn {
           animation: fadeIn 0.6s ease-out both;
-        }
-        .animate-hero {
-          animation: heroSlideDown 0.8s ease-out both;
         }
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
@@ -200,50 +193,22 @@ const AboutPage = () => {
       <MobileTOC activeSection={activeSection} />
 
       <div className="min-h-screen bg-white">
-        {/* Hero Section */}
-        <div className="relative overflow-hidden animate-hero">
-          <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-black to-gray-800" />
-          <div className="absolute inset-0 opacity-10">
-            <div className="absolute top-10 left-10 w-72 h-72 bg-white rounded-full blur-3xl" />
-            <div className="absolute bottom-10 right-10 w-96 h-96 bg-gray-400 rounded-full blur-3xl" />
-          </div>
-
-          <div className="relative px-4 sm:px-6 py-12 sm:py-20 text-center">
-            <div className="mb-6">
-              <img
-                src="https://avatars.githubusercontent.com/u/102389548?v=4"
-                alt="Nam Pham"
-                className="w-28 h-28 sm:w-32 sm:h-32 rounded-full border-4 border-white/30 shadow-2xl mx-auto object-cover grayscale"
-              />
-            </div>
-            <h1 className="text-4xl sm:text-5xl font-bold text-white mb-3 tracking-tight">
-              Nam Pham
-            </h1>
-            <p className="text-lg sm:text-xl text-gray-300 mb-6 max-w-xl mx-auto">
-              AI Engineer focused on building intelligent systems
-            </p>
-            <div className="flex justify-center gap-3 flex-wrap">
-              <a href="https://github.com/namwasinyourheart" target="_blank" rel="noopener noreferrer"
-                className="px-4 py-2 bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white rounded-lg border border-white/20 transition-all duration-300 text-sm font-medium">
-                GitHub
-              </a>
+        {/* Content + Desktop TOC */}
+        <div className="relative px-4 sm:px-6 py-8 sm:py-14 w-full max-w-5xl mx-auto">
+            <h1 className="text-3xl sm:text-4xl font-bold mb-4 text-center">About</h1>
+            <div className="space-y-12">
+            <div className="flex justify-end gap-3 mb-8">
               <a href={`/${RESUME_FILEPATH}`} target="_blank" rel="noopener noreferrer"
-                className="px-4 py-2 bg-white text-black hover:bg-gray-200 rounded-lg transition-all duration-300 text-sm font-medium flex items-center gap-2">
+                className="inline-flex items-center gap-2 px-4 py-2 bg-black text-white text-sm font-medium rounded-lg hover:bg-gray-800 transition-colors">
                 <FileText size={16} />
                 View Resume
               </a>
               <a href="mailto:itsnamfam@gmail.com"
-                className="px-4 py-2 bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white rounded-lg border border-white/20 transition-all duration-300 text-sm font-medium">
-                Email
+                className="inline-flex items-center gap-2 px-4 py-2 bg-white text-black text-sm font-medium rounded-lg border border-gray-200 hover:bg-gray-100 transition-colors">
+                Send Email
               </a>
             </div>
-          </div>
-        </div>
 
-        {/* Content + Desktop TOC */}
-        <div className="relative px-4 sm:px-6 py-8 sm:py-14 w-full sm:w-4/5 md:w-3/5 mx-auto">
-          <div className="flex gap-8">
-            <div className="flex-1 space-y-12">
             <section id="summary" className="animate-fadeInUp scroll-mt-16" style={{ animationDelay: '100ms' }}>
               <SectionHeader icon={User} title="Summary" delay={100} />
               <Summary summary={resumeData.summary} />
@@ -323,10 +288,9 @@ const AboutPage = () => {
               <Others others={resumeData.others} />
             </section>
             </div>
-
-            <TableOfContents activeSection={activeSection} />
-          </div>
         </div>
+
+        <TableOfContents activeSection={activeSection} />
       </div>
     </>
   );

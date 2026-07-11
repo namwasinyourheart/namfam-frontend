@@ -62,7 +62,7 @@ export default function Projects() {
   }
 
   return (
-    <div className="px-4 sm:px-6 py-6 sm:py-8 w-full sm:w-4/5 mx-auto">
+    <div className="px-4 sm:px-6 pt-12 sm:pt-16 pb-6 sm:pb-8 w-full sm:w-4/5 mx-auto">
       <h1 className="text-3xl sm:text-4xl font-bold mb-4 text-center">Projects</h1>
       <p className="mb-8 text-center text-gray-500">
         Explore some of the projects I&apos;ve worked on.
