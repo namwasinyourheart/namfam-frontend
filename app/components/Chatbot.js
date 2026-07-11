@@ -56,7 +56,7 @@ const Chatbot = ({ onClose }) => {
         </div>
 
         <div className="flex-shrink-0 px-4 py-2">
-          <MessageInput onSend={handleSend} />
+          <MessageInput onSend={handleSend} disabled={isLoading} />
         </div>
       </div>
     </div>

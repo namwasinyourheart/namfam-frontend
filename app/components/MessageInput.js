@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { Send } from "lucide-react";
 
-const MessageInput = ({ onSend }) => {
+const MessageInput = ({ onSend, disabled }) => {
   const [message, setMessage] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (message.trim()) {
+    if (message.trim() && !disabled) {
       onSend(message);
       setMessage('');
     }
@@ -23,7 +23,8 @@ const MessageInput = ({ onSend }) => {
       />
       <button 
         type="submit" 
-        className="bg-blue-600 text-white px-3 sm:px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors shrink-0"
+        disabled={disabled}
+        className="bg-blue-600 text-white px-3 sm:px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors shrink-0 disabled:bg-gray-300 disabled:cursor-not-allowed"
       >
         <Send className="h-4 w-4" />
       </button>

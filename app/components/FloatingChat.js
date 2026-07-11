@@ -141,12 +141,15 @@ const FloatingChat = ({ children }) => {
 
       {/* Floating Button — when collapsed */}
       {!isExpanded && (
-        <button
-          onClick={toggleChat}
-          className="fixed z-[101] bottom-20 right-4 sm:bottom-24 sm:right-6 flex items-center justify-center w-14 h-14 rounded-full bg-black hover:bg-gray-800 shadow-lg transition-all duration-300 hover:scale-105"
-        >
-          <MessageCircle size={22} className="text-white" />
-        </button>
+        <div className="fixed z-[101] bottom-20 right-4 sm:bottom-24 sm:right-6 flex flex-col items-center gap-1.5">
+          <span className="text-xs font-medium text-gray-500 bg-white/80 backdrop-blur-sm px-2 py-0.5 rounded-full shadow-sm border border-gray-200">Ask AI Assistant</span>
+          <button
+            onClick={toggleChat}
+            className="flex items-center justify-center w-14 h-14 rounded-full bg-black hover:bg-gray-800 shadow-lg transition-all duration-300 hover:scale-105"
+          >
+            <MessageCircle size={22} className="text-white" />
+          </button>
+        </div>
       )}
     </ChatContext.Provider>
   );

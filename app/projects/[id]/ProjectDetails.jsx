@@ -63,7 +63,17 @@ const ProjectDetails = ({ projectDetails }) => {
         {/* Header */}
         <header className="mb-8">
           <h1 className="text-3xl sm:text-4xl font-bold mb-3">{projectDetails.title}</h1>
-          <p className="text-lg text-gray-500 mb-6">{projectDetails.description}</p>
+          <p className="text-lg text-gray-500 mb-4">{projectDetails.description}</p>
+
+          {projectDetails?.categories?.length > 0 && (
+            <div className="flex flex-wrap gap-1.5 mb-6">
+              {projectDetails.categories.map((cat, index) => (
+                <span key={index} className="px-2.5 py-0.5 bg-gray-100 text-gray-600 text-xs font-medium rounded-full border border-gray-200">
+                  {cat.name}
+                </span>
+              ))}
+            </div>
+          )}
 
           {/* Demo & Repo Links */}
           <div className="flex flex-wrap gap-3">
@@ -142,54 +152,66 @@ const ProjectDetails = ({ projectDetails }) => {
           {projectDetails?.hightlight && projectDetails.hightlight.length > 0 && (
             <section>
               <h2 className="text-2xl font-bold mb-3 border-l-4 border-black pl-4">Highlights</h2>
-              <ul className="space-y-2 ml-4">
-                {projectDetails.hightlight.split(/\r?\n/).map((item, index) => {
-                  const [title, ...descParts] = item.split(':');
-                  const description = descParts.join(':').trim();
-                  return (
-                    <li key={index} className="flex gap-2 text-gray-600">
-                      <span className="text-black font-semibold mt-0.5">{title.trim()}:</span>
-                      <span>{description}</span>
-                    </li>
-                  );
-                })}
-              </ul>
+              <div className="ml-4 rounded-xl border border-gray-200 overflow-hidden">
+                <table className="w-full text-sm">
+                  <tbody>
+                    {projectDetails.hightlight.split(/\r?\n/).filter(s => s.trim()).map((item, index) => {
+                      const [title, ...descParts] = item.split(':');
+                      const description = descParts.join(':').trim();
+                      return (
+                        <tr key={index} className={index % 2 === 0 ? 'bg-gray-50' : 'bg-white'}>
+                          <td className="py-3 px-4 font-semibold text-black whitespace-nowrap border-r border-gray-200 w-[200px]">{title.trim()}</td>
+                          <td className="py-3 px-4 text-gray-600">{description}</td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
             </section>
           )}
 
           {projectDetails?.features && projectDetails.features.length > 0 && (
             <section>
               <h2 className="text-2xl font-bold mb-3 border-l-4 border-black pl-4">Key Features</h2>
-              <ul className="space-y-2 ml-4">
-                {projectDetails.features.split(/\r?\n/).map((feature, index) => {
-                  const [title, ...descParts] = feature.split(':');
-                  const description = descParts.join(':').trim();
-                  return (
-                    <li key={index} className="flex gap-2 text-gray-600">
-                      <span className="text-black font-semibold mt-0.5">{title.trim()}:</span>
-                      <span>{description}</span>
-                    </li>
-                  );
-                })}
-              </ul>
+              <div className="ml-4 rounded-xl border border-gray-200 overflow-hidden">
+                <table className="w-full text-sm">
+                  <tbody>
+                    {projectDetails.features.split(/\r?\n/).filter(s => s.trim()).map((feature, index) => {
+                      const [title, ...descParts] = feature.split(':');
+                      const description = descParts.join(':').trim();
+                      return (
+                        <tr key={index} className={index % 2 === 0 ? 'bg-gray-50' : 'bg-white'}>
+                          <td className="py-3 px-4 font-semibold text-black whitespace-nowrap border-r border-gray-200 w-[200px]">{title.trim()}</td>
+                          <td className="py-3 px-4 text-gray-600">{description}</td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
             </section>
           )}
 
           {projectDetails?.techStack && projectDetails.techStack.length > 0 && (
             <section>
               <h2 className="text-2xl font-bold mb-3 border-l-4 border-black pl-4">Tech Stack</h2>
-              <ul className="space-y-2 ml-4">
-                {projectDetails.techStack.split(/\r?\n/).map((line, index) => {
-                  const [name, ...descParts] = line.split(':');
-                  const description = descParts.join(':').trim();
-                  return (
-                    <li key={index} className="flex gap-2 text-gray-600">
-                      <span className="text-black font-semibold mt-0.5">{name.trim()}:</span>
-                      <span>{description}</span>
-                    </li>
-                  );
-                })}
-              </ul>
+              <div className="ml-4 rounded-xl border border-gray-200 overflow-hidden">
+                <table className="w-full text-sm">
+                  <tbody>
+                    {projectDetails.techStack.split(/\r?\n/).filter(s => s.trim()).map((line, index) => {
+                      const [name, ...descParts] = line.split(':');
+                      const description = descParts.join(':').trim();
+                      return (
+                        <tr key={index} className={index % 2 === 0 ? 'bg-gray-50' : 'bg-white'}>
+                          <td className="py-3 px-4 font-semibold text-black whitespace-nowrap border-r border-gray-200 w-[200px]">{name.trim()}</td>
+                          <td className="py-3 px-4 text-gray-600">{description}</td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
             </section>
           )}
 

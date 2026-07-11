@@ -4,7 +4,10 @@ import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 
 const Introduction = () => {
-  const phrases = ["Nam Fam", "an AI engineer"];
+  const phrases = [
+    { text: "Nam Fam", color: "text-blue-600" },
+    { text: "an AI engineer", color: "text-emerald-600" },
+  ];
   const [currentText, setCurrentText] = useState('');
   const [currentIndex, setCurrentIndex] = useState(0);
   const typingDuration = 60;
@@ -15,7 +18,7 @@ const Introduction = () => {
     let pauseTimeout;
 
     const typingLoop = () => {
-      const phrase = phrases[currentIndex];
+      const phrase = phrases[currentIndex].text;
       let index = 0;
 
       const typeCharacter = () => {
@@ -46,7 +49,7 @@ const Introduction = () => {
   return (
     <div className="w-full p-6 sm:p-10 text-center">
       <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
-        Hi. I&apos;m <span className="text-black font-bold">{currentText}</span>
+        Hi. I&apos;m <span className={`font-bold ${phrases[currentIndex].color}`}>{currentText}</span>
       </h1>
       <div className="text-xl mb-8 text-gray-600 leading-relaxed">
         I leverage AI to solve complex challenges and drive innovation.
