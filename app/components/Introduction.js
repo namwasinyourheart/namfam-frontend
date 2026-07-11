@@ -2,10 +2,8 @@
 
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { useChat } from './FloatingChat';
 
 const Introduction = () => {
-  const { isExpanded } = useChat();
   const phrases = ["Nam Fam", "an AI engineer"];
   const [currentText, setCurrentText] = useState('');
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -46,7 +44,7 @@ const Introduction = () => {
   }, [currentIndex]);
 
   return (
-    <div className={`p-6 sm:p-10 text-center ${isExpanded ? "w-full md:w-1/2 text-left" : "w-full"}`}>
+    <div className="w-full p-6 sm:p-10 text-center">
       <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
         Hi. I&apos;m <span className="text-black font-bold">{currentText}</span>
       </h1>
