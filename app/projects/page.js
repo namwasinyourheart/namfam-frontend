@@ -16,6 +16,25 @@ const fetchProjects = async () => {
   }
 };
 
+const GRADIENTS = [
+  "from-blue-500 to-blue-700",
+  "from-emerald-500 to-emerald-700",
+  "from-purple-500 to-purple-700",
+  "from-rose-500 to-rose-700",
+  "from-amber-500 to-amber-700",
+  "from-cyan-500 to-cyan-700",
+  "from-pink-500 to-pink-700",
+  "from-teal-500 to-teal-700",
+];
+
+function getGradient(str) {
+  let hash = 0;
+  for (let i = 0; i < str.length; i++) {
+    hash = str.charCodeAt(i) + ((hash << 5) - hash);
+  }
+  return GRADIENTS[Math.abs(hash) % GRADIENTS.length];
+}
+
 export default function Projects() {
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -93,11 +112,17 @@ export default function Projects() {
         {currentProjects.map((project) => (
           <Link key={project.id} href={`/projects/${project.id}`}>
             <div className="h-72 relative group rounded-xl overflow-hidden cursor-pointer border border-gray-200">
-              <img
-                src={project.thumbnail}
-                alt={project.title}
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-              />
+              {project.thumbnail ? (
+                <img
+                  src={project.thumbnail}
+                  alt={project.title}
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+              ) : (
+                <div className={`w-full h-full flex items-center justify-center bg-gradient-to-br ${getGradient(project.title)} transition-transform duration-500 group-hover:scale-105`}>
+                  <span className="text-6xl font-bold text-white/20">{project.title.charAt(0).toUpperCase()}</span>
+                </div>
+              )}
               <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center p-6">
                 <p className="text-xl font-bold text-white text-center mb-2">
                   {project.title}
