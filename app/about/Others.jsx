@@ -2,7 +2,7 @@ import React from "react";
 import { Sparkles } from "lucide-react";
 
 const Others = ({ others }) => {
-  const items = others.details.split('\r\n').filter(s => s.trim());
+  const items = others.details.split(/\r?\n/).filter(s => s.trim());
 
   return (
     <div className="relative rounded-2xl bg-white border border-gray-200 shadow-sm overflow-hidden">

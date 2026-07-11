@@ -26,7 +26,7 @@ const Experience = ({ professionalExperience }) => {
                 {experience.company}
               </p>
               <ul className="space-y-2">
-                {experience.responsibilities.split('\r\n').map((responsibility, idx) => (
+                {experience.responsibilities.split(/\r?\n/).map((responsibility, idx) => (
                   <li key={idx} className="flex items-start gap-2 text-sm text-gray-600 leading-relaxed">
                     <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-gray-400 flex-shrink-0" />
                     {responsibility.trim()}

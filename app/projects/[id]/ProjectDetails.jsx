@@ -45,7 +45,7 @@ const ProjectDetails = ({ projectDetails }) => {
   };
 
   const images = projectDetails?.images
-    ? projectDetails.images.split('\r\n').filter(img => img.trim())
+    ? projectDetails.images.split(/\r?\n/).filter(img => img.trim())
     : [];
 
   return (
@@ -143,7 +143,7 @@ const ProjectDetails = ({ projectDetails }) => {
             <section>
               <h2 className="text-2xl font-bold mb-3 border-l-4 border-black pl-4">Highlights</h2>
               <ul className="space-y-2 ml-4">
-                {projectDetails.hightlight.split('\r\n').map((item, index) => {
+                {projectDetails.hightlight.split(/\r?\n/).map((item, index) => {
                   const [title, ...descParts] = item.split(':');
                   const description = descParts.join(':').trim();
                   return (
@@ -161,7 +161,7 @@ const ProjectDetails = ({ projectDetails }) => {
             <section>
               <h2 className="text-2xl font-bold mb-3 border-l-4 border-black pl-4">Key Features</h2>
               <ul className="space-y-2 ml-4">
-                {projectDetails.features.split('\r\n').map((feature, index) => {
+                {projectDetails.features.split(/\r?\n/).map((feature, index) => {
                   const [title, ...descParts] = feature.split(':');
                   const description = descParts.join(':').trim();
                   return (
@@ -179,7 +179,7 @@ const ProjectDetails = ({ projectDetails }) => {
             <section>
               <h2 className="text-2xl font-bold mb-3 border-l-4 border-black pl-4">Tech Stack</h2>
               <ul className="space-y-2 ml-4">
-                {projectDetails.techStack.split('\n').map((line, index) => {
+                {projectDetails.techStack.split(/\r?\n/).map((line, index) => {
                   const [name, ...descParts] = line.split(':');
                   const description = descParts.join(':').trim();
                   return (

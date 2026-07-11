@@ -12,6 +12,23 @@ import { BACKEND_URL, RESUME_FILEPATH } from "../../utils/config";
 import { User, Briefcase, Code2, GraduationCap, Award, MoreHorizontal, FileText, FolderKanban, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 
+const MONTH_MAP = {
+  jan: 1, feb: 2, mar: 3, apr: 4, may: 5, jun: 6,
+  jul: 7, aug: 8, sep: 9, oct: 10, nov: 11, dec: 12,
+};
+
+function parseStartDate(duration) {
+  if (!duration) return new Date(0);
+  const match = duration.match(/(\w+)\s+(\d{4})/);
+  if (!match) return new Date(0);
+  const month = MONTH_MAP[match[1].toLowerCase().slice(0, 3)] || 1;
+  return new Date(parseInt(match[2]), month - 1);
+}
+
+function sortByMostRecent(experiences) {
+  return [...experiences].sort((a, b) => parseStartDate(b.duration) - parseStartDate(a.duration));
+}
+
 const sections = [
   { id: "summary", label: "Summary", icon: User },
   { id: "experience", label: "Experience", icon: Briefcase },
@@ -216,7 +233,7 @@ const AboutPage = () => {
 
             <section id="experience" className="animate-fadeInUp scroll-mt-16" style={{ animationDelay: '200ms' }}>
               <SectionHeader icon={Briefcase} title="Experience" delay={200} />
-              <Experience professionalExperience={resumeData.professional_experience} />
+              <Experience professionalExperience={sortByMostRecent(resumeData.professional_experience)} />
             </section>
 
             <section id="skills" className="animate-fadeInUp scroll-mt-16" style={{ animationDelay: '300ms' }}>

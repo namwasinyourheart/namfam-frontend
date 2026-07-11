@@ -2,7 +2,7 @@ import React from "react";
 import { CheckCircle2 } from "lucide-react";
 
 const Summary = ({ summary }) => {
-  const items = summary.split('\r\n').filter(s => s.trim());
+  const items = summary.split(/\r?\n/).filter(s => s.trim());
 
   return (
     <div className="relative rounded-2xl bg-white border border-gray-200 shadow-sm overflow-hidden">
