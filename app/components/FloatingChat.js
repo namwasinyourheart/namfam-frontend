@@ -54,6 +54,8 @@ const FloatingChat = ({ children }) => {
 
   const handleClear = () => {
     setMessages([{ text: GREETING, isUser: false }]);
+    setIsLoading(false);
+    setError("");
     setSuggestions([
       "Nam's work experience?",
       "Nam's main skills?",
