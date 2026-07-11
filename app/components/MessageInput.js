@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
-
 import { Send } from "lucide-react";
-
 
 const MessageInput = ({ onSend }) => {
   const [message, setMessage] = useState('');
@@ -15,21 +13,19 @@ const MessageInput = ({ onSend }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="message-input flex">
+    <form onSubmit={handleSubmit} className="message-input flex gap-2">
       <input
         type="text"
         value={message}
         onChange={(e) => setMessage(e.target.value)}
         placeholder="Type your message here..."
-        className="w-full border rounded-lg p-2"
+        className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
       />
       <button 
         type="submit" 
-        className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 ml-2"
-        >
+        className="bg-blue-600 text-white px-3 sm:px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors shrink-0"
+      >
         <Send className="h-4 w-4" />
-        {/* <SendIcon className="w-5 h-5" /> */}
-        {/* <img src={sendIconPath} alt="Send" className="w-5 h-5" /> */}
       </button>
     </form>
   );

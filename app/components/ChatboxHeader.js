@@ -1,35 +1,32 @@
 import React from 'react';
+import { X } from 'lucide-react';
 
-const ChatboxHeader = ({ onClear, suggestions = [], onSuggestionClick }) => {
+const ChatboxHeader = ({ onClear, onClose }) => {
     return (
-        <div style={{ backgroundColor: "#f0f6fb", width: "100%" }} className='flex flex-row rounded-t-lg justify-between items-center p-4 h-20'>
-            <div className='info font-semibold text-2xl'>
-                Nam&apos;s Assistant
+        <div className="w-full flex flex-row rounded-t-lg justify-between items-center px-4 py-2 bg-gray-50 border-b border-gray-200">
+            <div>
+                <div className="font-semibold text-xl sm:text-2xl text-black">
+                    Vee
+                </div>
+                <p className="text-xs text-gray-400 mt-0.5">Nam&apos;s AI Assistant</p>
             </div>
-            <div className='flex gap-4'>
-                <button 
-                    onClick={onClear} 
-                    className='bg-gray-600 text-white px-4 py-2 rounded-2xl hover:bg-red-700'
+            <div className="flex items-center gap-2">
+                <button
+                    onClick={onClear}
+                    className="bg-gray-600 text-white px-4 py-2 rounded-2xl hover:bg-gray-700 transition-colors text-sm font-medium"
                 >
                     New chat
                 </button>
-                {/* <div className='button'>
-                    Button
-                </div> */}
-            </div>
-
-            {/* <div className='mt-4 flex flex-wrap gap-2'>
-                {suggestions.map((suggestion, index) => (
-                    <button 
-                        key={index} 
-                        onClick={() => onSuggestionClick(suggestion)} 
-                        className='bg-gray-200 text-black px-4 py-2 rounded hover:bg-gray-300'
+                {onClose && (
+                    <button
+                        onClick={onClose}
+                        className="p-2 rounded-lg hover:bg-gray-200 text-gray-400 hover:text-gray-600 transition-colors"
+                        title="Close chat"
                     >
-                        {suggestion}
+                        <X size={18} />
                     </button>
-                ))}
-            </div> */}
-
+                )}
+            </div>
         </div>
     );
 };

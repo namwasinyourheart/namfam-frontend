@@ -1,28 +1,24 @@
 import React from "react";
-import './about.css'
+import { CheckCircle2 } from "lucide-react";
 
-const Summary = ({summary}) => {
-    return (
-        <section className="section">
-            <h2 className="title">
-                SUMMARY
-            </h2>
-            <div className="relative pl-6">
+const Summary = ({ summary }) => {
+  const items = summary.split('\r\n').filter(s => s.trim());
 
-                <div className="relative mx-auto rounded-lg shadow-md bg-white border border-gray-200 p-5 mb-5 transition duration-300 hover:shadow-lg cursor-pointer pl-8">
-
-                    <ul className="list-disc">
-                        {summary.split('\r\n').map((item, index) => (
-                            <li key={index}>{item}</li>
-                            
-                        ))}
-                    </ul>
-                </div>
-            </div>
-
-
-        </section>
-    )
+  return (
+    <div className="relative rounded-2xl bg-white border border-gray-200 shadow-sm overflow-hidden">
+      <div className="absolute left-0 top-0 bottom-0 w-1 bg-black" />
+      <div className="p-5 sm:p-8 pl-6 sm:pl-8">
+        <ul className="space-y-4">
+          {items.map((item, index) => (
+            <li key={index} className="flex items-start gap-3 text-gray-700 leading-relaxed">
+              <CheckCircle2 size={18} className="text-black mt-0.5 flex-shrink-0" />
+              <span>{item.trim()}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  );
 };
 
-export default Summary
+export default Summary;

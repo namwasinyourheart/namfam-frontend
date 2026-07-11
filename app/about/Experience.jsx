@@ -1,38 +1,43 @@
 import React from 'react';
-import './about.css'
+import { Briefcase, Calendar } from 'lucide-react';
+
 const Experience = ({ professionalExperience }) => {
   return (
-    <section className="section">
-      <h2 className="title">EXPERIENCE</h2>
-      {/* <header className="text-red-500 text-lg font-semibold mb-5">
-      <h2 className="title">TECHNICAL SKILLS</h2>
-      </header> */}
+    <div className="relative pl-6 sm:pl-8">
+      <div className="absolute left-3 top-2 bottom-2 w-0.5 bg-gradient-to-b from-black via-gray-400 to-gray-200" />
 
-      <div className="relative pl-6 ">
-        {/* Timeline bar */}
-        <div className="absolute left-1.5 top-0 w-1 h-full bg-green-600"></div>
-
-        {/* Timeline items */}
+      <div className="space-y-6">
         {professionalExperience.map((experience, index) => (
-          <div key={index} className="relative mx-auto rounded-lg shadow-md bg-white border border-gray-200 p-5 mb-5 transition duration-300 hover:shadow-lg cursor-pointer">
-            <div className="absolute left-[-25px] top-[-1px] w-4 h-4 bg-green-600 border-2 border-white rounded-full"></div>
-            
-            {/* {experience.title} <span className="font-normal text-lg text-gray-600">at {experience.company}</span> */}
-            <h3 className="text-xl font-semibold text-black">
-              {experience.title} <span className="font-normal text-lg text-gray-600">at {experience.company}</span>
-            </h3>
-            
-            {/* <h3 className="text-xl font-semibold py-2 text-gray-800">{experience.title} at {experience.company}</h3> */}
-            <h4 className="text-blue-600">{experience.duration}</h4>
-            <ul className="text-gray-600 list-disc pl-5">
-              {experience.responsibilities.split('\r\n').map((responsibility, idx) => (
-                <li key={idx}>{responsibility.trim()}</li>
-              ))}
-            </ul>
+          <div key={index} className="relative group">
+            <div className="absolute -left-5 top-5 w-3 h-3 rounded-full bg-black border-2 border-white shadow-md group-hover:scale-125 transition-transform duration-300" />
+
+            <div className="rounded-2xl bg-white border border-gray-200 shadow-sm p-5 sm:p-6 hover:shadow-md hover:border-gray-400 transition-all duration-300 group-hover:-translate-y-0.5">
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 mb-3">
+                <h3 className="text-lg font-bold text-black">
+                  {experience.title}
+                </h3>
+                <div className="flex items-center gap-1.5 text-sm text-gray-600 font-medium">
+                  <Calendar size={14} />
+                  {experience.duration}
+                </div>
+              </div>
+              <p className="text-sm font-medium text-gray-700 mb-3 flex items-center gap-1.5">
+                <Briefcase size={14} />
+                {experience.company}
+              </p>
+              <ul className="space-y-2">
+                {experience.responsibilities.split('\r\n').map((responsibility, idx) => (
+                  <li key={idx} className="flex items-start gap-2 text-sm text-gray-600 leading-relaxed">
+                    <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-gray-400 flex-shrink-0" />
+                    {responsibility.trim()}
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         ))}
       </div>
-    </section>
+    </div>
   );
 };
 

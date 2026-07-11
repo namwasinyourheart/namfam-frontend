@@ -1,7 +1,8 @@
+import { BACKEND_URL } from "../../utils/config";
+
 const processMessage = async (message) => {
     try {
-      // const response = await fetch('http://localhost:8000/api/chat/', {
-      const response = await fetch('https://namfam-backend.onrender.com/api/chat/', {
+      const response = await fetch(`${BACKEND_URL}/api/chat/`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

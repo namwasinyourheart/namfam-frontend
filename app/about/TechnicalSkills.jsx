@@ -1,253 +1,69 @@
-
-// import React from 'react';
-// import './TechnicalSkills.css';
-// import { BrainCircuitIcon, MessageSquareIcon, CodeIcon, WrenchIcon } from 'lucide-react';
-
-
 import React from 'react';
-import "./about.css";
-import { 
-  BrainCircuitIcon, 
-  MessageSquareIcon, 
-  CodeIcon, 
-  WrenchIcon, 
-  Settings2Icon,  // Icon for MLOps
-  CloudIcon       // Icon for Cloud
+import {
+  BrainCircuit,
+  MessageSquare,
+  Code,
+  Wrench,
+  Settings2,
+  Cloud,
+  BarChart3,
+  Mic,
 } from 'lucide-react';
 
+const categoryConfig = {
+  "Machine Learning": { icon: BrainCircuit },
+  "NLP": { icon: MessageSquare },
+  "Languages": { icon: Code },
+  "Framework": { icon: Wrench },
+  "MLOps": { icon: Settings2 },
+  "Cloud": { icon: Cloud },
+  "Data": { icon: BarChart3 },
+  "Speech": { icon: Mic },
+};
+
+const getConfig = (category) => {
+  for (const [key, config] of Object.entries(categoryConfig)) {
+    if (category.includes(key)) return config;
+  }
+  return categoryConfig["Languages"];
+};
 
 const TechnicalSkills = ({ technicalSkills }) => {
   return (
-    <div className="section">
-      <h2 className="title">TECHNICAL SKILLS</h2>
-      <div className="content">
-        <div className="skills-container">
-          {/* Loop through the technical skills */}
-          {technicalSkills && technicalSkills.map(skill => (
-            <div className="relative pl-6" key={skill.id}>
-              <div className="skill-item shadow-md">
-                <div className="skill-icon">
-                  {/* Conditionally render icons based on category */}
-                  {skill.category.includes("Machine Learning") && <BrainCircuitIcon />}
-                  {skill.category.includes("NLP") && <MessageSquareIcon />}
-                  {skill.category.includes("Languages") && <CodeIcon />} 
-                  {skill.category.includes("Framework") && <WrenchIcon />} 
-                  {skill.category.includes("MLOps") && <Settings2Icon />}  {/* Icon for MLOps */}
-                  {skill.category.includes("Cloud") && <CloudIcon />}      {/* Icon for Cloud */}
-                </div>
-                <div className="skill-content">
-                  <h3>{skill.category}</h3>
-                  <p>{skill.skill}</p>
-                </div>
+    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      {technicalSkills && technicalSkills.map((skill) => {
+        const config = getConfig(skill.category);
+        const Icon = config.icon;
+        const tags = skill.skill.split(',').map(s => s.trim()).filter(Boolean);
+
+        return (
+          <div
+            key={skill.id}
+            className="rounded-2xl bg-white border border-gray-200 shadow-sm p-5 hover:shadow-md transition-all duration-300 hover:-translate-y-0.5"
+          >
+            <div className="flex items-center gap-3 mb-4">
+              <div className="flex items-center justify-center w-9 h-9 rounded-xl bg-black text-white shadow-sm">
+                <Icon size={18} />
               </div>
+              <h3 className="font-bold text-sm text-black">
+                {skill.category}
+              </h3>
             </div>
-          ))}
-        </div>
-      </div>
+            <div className="flex flex-wrap gap-1.5">
+              {tags.map((tag, idx) => (
+                <span
+                  key={idx}
+                  className="inline-block px-2.5 py-1 text-xs font-medium rounded-lg bg-gray-100 text-gray-800 border border-gray-200"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </div>
+        );
+      })}
     </div>
   );
 };
 
 export default TechnicalSkills;
-
-
-// const TechnicalSkills = ({ resume }) => {
-//   return (
-//     <div className="section">
-//       <h2 className="title">TECHNICAL SKILLS</h2>
-//       <div className="content">
-//         <div className="skills-container">
-//           {/* Machine Learning Section */}
-//         <div className="relative pl-6">
-//           {resume.technical_skills.machine_learning && (
-//             // <div className="relative mx-auto rounded-lg shadow-md bg-white border border-gray-200 p-5 mb-5 transition duration-300 hover:shadow-lg cursor-pointer">
-//             <div className="skill-item shadow-md">
-//               <div className="skill-icon">
-//                 <BrainCircuitIcon />
-//               </div>
-//               <div className="skill-content">
-//                 <h3>Machine Learning</h3>
-//                 <p>{resume.technical_skills.machine_learning.join(', ')}</p>
-//               </div>
-//             </div>
-//           )}
-
-//           {/* NLP/Speech Processing Section */}
-//           {resume.technical_skills.natural_language_processing && (
-//             <div className="skill-item shadow-md">
-//               <div className="skill-icon">
-//                 <MessageSquareIcon />
-//               </div>
-//               <div className="skill-content">
-//                 <h3>NLP/Speech Processing</h3>
-//                 <p>{resume.technical_skills.natural_language_processing.join(', ')}</p>
-//               </div>
-//             </div>
-//           )}
-
-//           {/* Languages Section */}
-//           {resume.technical_skills.languages_tools && (
-//             <div className="skill-item shadow-md">
-//               <div className="skill-icon">
-//                 <CodeIcon />
-//               </div>
-//               <div className="skill-content">
-//                 <h3>Languages</h3>
-//                 <p>{resume.technical_skills.languages_tools.join(', ')}</p>
-//               </div>
-//             </div>
-//           )}
-
-//           {/* Frameworks/Tools Section */}
-//           {resume.technical_skills.libraries_frameworks && (
-//             <div className="skill-item shadow-md">
-//               <div className="skill-icon">
-//                 <WrenchIcon />
-//               </div>
-//               <div className="skill-content">
-//                 <h3>Frameworks/Tools</h3>
-//                 <p>{resume.technical_skills.libraries_frameworks.join(', ')}</p>
-//               </div>
-//             </div>
-//           )}
-//         </div>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default TechnicalSkills;
-
-
-  // Dummy data
-//   const resume = {
-//     contact: {
-//       address: "Hai Ba Trung District, Hanoi",
-//       phone: "(+84)38 3508 351",
-//       email: "itsnamfam@gmail.com",
-//       github: "github.com/namwasinyourheart",
-//     },
-//     professional_experience: [
-//       {
-//         title: "Founder/Blogger",
-//         company: "Machine Learning Pulse Blog",
-//         duration: "Apr 2024 – Present",
-//         responsibilities: [
-//           "Regularly produce in-depth articles, tutorials, and case studies exploring advanced AI/machine learning concepts.",
-//           "Garnered 1,000 subscribers fanpage and cultivated a community of 1,000 active members."
-//         ]
-//       },
-//       {
-//         title: "Technology Specialist",
-//         company: "VINBIGDATA",
-//         duration: "Jul 2023 – Apr 2024",
-//         responsibilities: [
-//           "Participated in intensive AI training courses on AI/ML/CV/NLP concepts.",
-//           "Implemented capstone projects including aspect-based sentiment analysis and image captioning.",
-//           "Engaged in a challenging internship specializing in speaker recognition."
-//         ]
-//       }
-//       // Add more experiences as needed
-//     ],
-//     technical_skills: {
-//       data_science: ["Statistical Analysis", "Data Visualization"],
-//       machine_learning: ["Regression", "Decision Tree", "Ensemble Methods"],
-//       natural_language_processing: ["CNN", "RNN/LSTM", "BERT"],
-//       speech_processing: ["Speaker Verification", "Text-to-Speech"],
-//       mlops: ["Docker", "FastAPI", "RestAPI"],
-//       languages_tools: ["Python", "SQL", "Git"],
-//       libraries_frameworks: ["Tensorflow", "Keras", "PyTorch"]
-//     },
-//     education: {
-//       institution: "Hanoi University of Science and Technology",
-//       degree: "Bachelor in Computer Science",
-//       duration: "Fall 2018 – Present",
-//       cumulative_cpa: "3.22/4.0",
-//       graduation_thesis: {
-//         title: "Chatbot Question Answering",
-//         grade: "9.5/10"
-//       }
-//     },
-//     side_projects: [
-//       {
-//         title: "Voice Cloning",
-//         details: "Developed a voice assistant using IBM Watson and GPT-3. Integrated IBM Watson's Speech-to-Text with GPT-3 for intelligent responses."
-//       },
-//       {
-//         title: "Real-Time Stock Investing Advisor",
-//         details: "Built pipelines for feature extraction and inference using Bytewax, Qdrant, and LLMs."
-//       }
-//       // Add more projects as needed
-//     ],
-//     certifications: [
-//       { title: "DeepLearning.AI Generative AI with Large Language Models", date: "Jul 2023" },
-//       { title: "Microsoft Certified: Azure AI Fundamentals", date: "Jun 2023" }
-//     ],
-//     additional_information: {
-//       english: "TOEIC certificate with score 795 - issued by IIG Mar 2023",
-//       chinese: "HSK …",
-//       activities: "Runner-up Iron Team"
-//     }
-//   };
-
-
-//   const TechnicalSkills = ({ resume }) => {
-//     return (
-//       <div className="technical-skills">
-//         <h2 className="title">TECHNICAL SKILLS</h2>
-//         <div className="content">
-//           <div className="skills-container">
-            
-//             {/* Machine Learning Section */}
-//             <div className="skill-item">
-//               <div className="skill-icon">
-//                 <BrainCircuitIcon />
-//               </div>
-//               <div className="skill-content">
-//                 <h3>Machine Learning</h3>
-//                 <p>Regression, Decision Tree, SVM, Clustering, Bagging/Boosting, CNN, RNN/LSTM, BERT</p>
-//               </div>
-//             </div>
-  
-//             {/* NLP/Speech Processing Section */}
-//             <div className="skill-item">
-//               <div className="skill-icon">
-//                 <MessageSquareIcon />
-//               </div>
-//               <div className="skill-content">
-//                 <h3>NLP/Speech Processing</h3>
-//                 <p>BERT, T5, LLMs Fine-tuning, RAG, Speaker Recognition/Verification, Text-to-Speech</p>
-//               </div>
-//             </div>
-  
-//             {/* Languages Section */}
-//             <div className="skill-item">
-//               <div className="skill-icon">
-//                 <CodeIcon />
-//               </div>
-//               <div className="skill-content">
-//                 <h3>Languages</h3>
-//                 <p>Python, SQL, JavaScript</p>
-//               </div>
-//             </div>
-  
-//             {/* Frameworks/Tools Section */}
-//             <div className="skill-item">
-//               <div className="skill-icon">
-//                 <WrenchIcon />
-//               </div>
-//               <div className="skill-content">
-//                 <h3>Frameworks/Tools</h3>
-//                 <p>Tensorflow, Keras, PyTorch, Scikit-learn, Docker, FastAPI, Git, WandB</p>
-//               </div>
-//             </div>
-  
-//           </div>
-//         </div>
-//       </div>
-//     );
-//   };
-  
-//   export default TechnicalSkills;
-  

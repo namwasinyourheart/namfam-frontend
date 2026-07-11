@@ -1,34 +1,39 @@
-import React from "react"
-import './about.css'
+import React from "react";
+import { Award, Calendar, ExternalLink } from "lucide-react";
 
-const Certifications = ({certifications}) => {
-    return (
-        <section className="section">
-            <h2 className="title">CERTIFICATIONS</h2>
-            <div className="relative pl-6">
-              {certifications.map((certification, index) => (
-                <div 
-                  key={index} 
-                  className="relative mx-auto rounded-lg shadow-md bg-white border border-gray-200 p-5 mb-5 transition duration-300 hover:shadow-lg cursor-pointer"
-                >
-                  {/* <div className="absolute left-[-25px] top-[-1px] w-4 h-4 bg-green-600 border-2 border-white rounded-full"></div> */}
-                  <a 
-                    href={certification.link}
-                    className="block w-full h-full" 
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <h3 className="text-xl font-semibold text-black">
-                      {certification.title} <span className="font-normal text-lg text-gray-600"> issued by {certification.issued_by}</span>
-                    </h3>
-                    <h4 className="text-blue-600">{certification.date}</h4>
-                  </a>
-
-                </div>
-              ))}
+const Certifications = ({ certifications }) => {
+  return (
+    <div className="space-y-4">
+      {certifications.map((certification, index) => (
+        <a
+          key={index}
+          href={certification.link}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="group block relative rounded-2xl bg-white border border-gray-200 shadow-sm p-4 sm:p-6 hover:shadow-md hover:border-gray-400 transition-all duration-300 hover:-translate-y-0.5"
+        >
+          <div className="flex items-start gap-4">
+            <div className="flex items-center justify-center w-11 h-11 rounded-xl bg-black text-white shadow-md flex-shrink-0 group-hover:scale-105 transition-transform">
+              <Award size={22} />
             </div>
-        </section>
-    )
-}
+            <div className="flex-1 min-w-0">
+              <h3 className="text-base font-bold text-black group-hover:text-gray-600 transition-colors leading-snug">
+                {certification.title}
+              </h3>
+              {certification.issued_by && (
+                <p className="text-sm text-gray-500 mt-1">issued by {certification.issued_by}</p>
+              )}
+              <div className="flex items-center gap-1.5 text-sm text-gray-600 font-medium mt-2">
+                <Calendar size={14} />
+                {certification.date}
+              </div>
+            </div>
+            <ExternalLink size={16} className="text-gray-300 group-hover:text-black transition-colors flex-shrink-0 mt-1" />
+          </div>
+        </a>
+      ))}
+    </div>
+  );
+};
 
-export default Certifications
+export default Certifications;

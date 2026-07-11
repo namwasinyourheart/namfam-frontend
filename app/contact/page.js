@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function Contact() {
   return (
-    <div className="px-6 py-10 w-full max-w-3xl mx-auto">
+    <div className="px-4 sm:px-6 py-8 sm:py-10 w-full max-w-3xl mx-auto">
       <h1 className="text-4xl font-bold mb-6 text-center">Contact Me</h1>
       <p className="text-lg text-center mb-6">
         Feel free to reach out via email at{" "}

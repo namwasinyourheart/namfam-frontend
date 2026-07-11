@@ -1,78 +1,31 @@
 import React from "react";
-import './about.css'
+import { Sparkles } from "lucide-react";
 
+const Others = ({ others }) => {
+  const items = others.details.split('\r\n').filter(s => s.trim());
 
-const Others = ({others}) => {
-    return (
-        <section className="section">
-            <h2 className="title">
-                OTHERS
-            </h2>
-            <div className="relative pl-6">
-
-                <div className="relative mx-auto rounded-lg shadow-md bg-white border border-gray-200 p-5 mb-5 transition duration-300 hover:shadow-lg cursor-pointer pl-8">
-
-                    <ul className="list-disc">
-                        {others.details.split('\r\n').map((item, index) => (
-                            <li key={index}>{item}</li>
-                            
-                        ))}
-                    </ul>
-                </div>
-            </div>
-
-
-        </section>
-    )
+  return (
+    <div className="relative rounded-2xl bg-white border border-gray-200 shadow-sm overflow-hidden">
+      <div className="absolute left-0 top-0 bottom-0 w-1 bg-black" />
+      <div className="p-5 sm:p-8 pl-6 sm:pl-8">
+        <div className="flex items-start gap-4">
+          <div className="flex items-center justify-center w-11 h-11 rounded-xl bg-black text-white shadow-md flex-shrink-0">
+            <Sparkles size={22} />
+          </div>
+          <div className="flex-1">
+            <ul className="space-y-2">
+              {items.map((item, index) => (
+                <li key={index} className="flex items-start gap-2 text-sm text-gray-600 leading-relaxed">
+                  <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-gray-400 flex-shrink-0" />
+                  {item.trim()}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 };
 
-export default Others
-
-// const Others = ({others}) => {
-//     return (
-//         <section className="section">
-//             <h2 className="title">OTHERS</h2>
-//             <div className="relative pl-6">
-//                 <div className="relative mx-auto rounded-lg shadow-md bg-white border border-gray-200 p-5 mb-5 transition duration-300 hover:shadow-lg cursor-pointer">
-//                     {/* {Object.entries(others).map(([key, value], index) => (
-//                         value && (  // Only render if the value exists
-//                             <p key={index} className="mb-2">
-//                                 <strong>{key.charAt(0).toUpperCase() + key.slice(1)}:</strong> {value}
-//                             </p>
-//                         )
-//                     ))} */}
-
-//                     <ul className="list-disc">
-//                         {others.details.split('\r\n').map((item, index) => (
-//                             <li key={index}>{item}</li>
-                            
-//                         ))}
-//                     </ul>
-//                 </div>
-//             </div>
-//             {/* <div className="shadow-md">
-//                 <p className="mb-2"><strong>English:</strong> {others.english}</p>
-//                 <p className="mb-2"><strong>Chinese:</strong> {others.chinese}</p>
-//                 <p><strong>Activities:</strong> {others.activities}</p>
-//             </div> */}
-//         </section>
-//     )
-// };
-
-// export default Others
-
-
-// const Others = ({others}) => {
-//     return (
-//         <section className="section">
-//             <h2 className="title">OTHERS</h2>
-//             <div className="shadow-md">
-//                 <p className="mb-2"><strong>English:</strong> {others.english}</p>
-//                 <p className="mb-2"><strong>Chinese:</strong> {others.chinese}</p>
-//                 <p><strong>Activities:</strong> {others.activities}</p>
-//             </div>
-//         </section>
-//     )
-// };
-
-// export default Others
+export default Others;
