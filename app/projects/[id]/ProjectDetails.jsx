@@ -1,33 +1,9 @@
-import React, { useEffect, useState } from 'react';
+"use client";
+
+import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useParams } from 'next/navigation';
 import { ArrowLeft, ExternalLink, Github } from 'lucide-react';
-import { BACKEND_URL } from "../../../utils/config";
-
-const fetchProjectById = async (id) => {
-  try {
-    const response = await fetch(`${BACKEND_URL}/api/projects/${id}`);
-    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-    return await response.json();
-  } catch (error) {
-    console.error('Error fetching project:', error);
-    return null;
-  }
-};
-
-function convertKeysToCamelCase(obj) {
-  if (Array.isArray(obj)) {
-    return obj.map(item => convertKeysToCamelCase(item));
-  } else if (obj !== null && obj && typeof obj === 'object') {
-    return Object.keys(obj).reduce((acc, key) => {
-      const camelCaseKey = key.replace(/_\w/g, m => m[1].toUpperCase());
-      acc[camelCaseKey] = convertKeysToCamelCase(obj[key]);
-      return acc;
-    }, {});
-  }
-  return obj;
-}
 
 const ProjectDetails = ({ projectDetails }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -278,70 +254,4 @@ const ProjectDetails = ({ projectDetails }) => {
   );
 };
 
-const Index = () => {
-  const { id } = useParams();
-  const [project, setProject] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    const loadProject = async () => {
-      try {
-        const selectedProject = await fetchProjectById(id);
-        if (selectedProject) {
-          setProject(selectedProject);
-        } else {
-          setError(new Error('Project not found'));
-        }
-      } catch (error) {
-        setError(error);
-      } finally {
-        setLoading(false);
-      }
-    };
-    loadProject();
-  }, [id]);
-
-  if (loading) {
-    return (
-      <div className="flex items-center justify-center min-h-[60vh]">
-        <div className="flex flex-col items-center gap-3">
-          <div className="w-10 h-10 border-4 border-black border-t-transparent rounded-full animate-spin" />
-          <p className="text-gray-500 text-sm">Loading project...</p>
-        </div>
-      </div>
-    );
-  }
-
-  if (error) {
-    return (
-      <div className="flex items-center justify-center min-h-[60vh]">
-        <div className="flex flex-col items-center gap-3">
-          <p className="text-gray-500">Error loading project: {error.message}</p>
-          <Link href="/projects" className="text-sm text-blue-600 hover:underline">
-            Back to Projects
-          </Link>
-        </div>
-      </div>
-    );
-  }
-
-  if (!project) {
-    return (
-      <div className="flex items-center justify-center min-h-[60vh]">
-        <div className="flex flex-col items-center gap-3">
-          <p className="text-gray-500">Project not found.</p>
-          <Link href="/projects" className="text-sm text-blue-600 hover:underline">
-            Back to Projects
-          </Link>
-        </div>
-      </div>
-    );
-  }
-
-  const projectData = convertKeysToCamelCase(project);
-
-  return <ProjectDetails projectDetails={projectData} />;
-};
-
-export default Index;
+export default ProjectDetails;

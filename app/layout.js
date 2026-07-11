@@ -1,20 +1,18 @@
 // app/layout.js
-"use client";
 
 import './globals.css';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
 import Image from 'next/image';
-import FloatingChat from './components/FloatingChat';
+import dynamic from 'next/dynamic';
 
-// export const metadata = {
-//   title: 'Nam Fam',
-//   description: 'Showcasing my work and skills.',
-// };
+const FloatingChat = dynamic(() => import('./components/FloatingChat'), { ssr: false });
+
+export const metadata = {
+  title: 'Nam Fam',
+  description: 'Showcasing my work and skills.',
+};
 
 export default function RootLayout({ children }) {
-  const { pathname } = useRouter();
-
   return (
     <html lang="en">
       <body className={`bg-white flex flex-col h-screen overflow-hidden`}>
@@ -52,11 +50,11 @@ export default function RootLayout({ children }) {
           </nav>
         </header>
 
-        <FloatingChat>
-          <main className="flex-1 overflow-y-auto w-full max-w-7xl mx-auto p-4 sm:p-6 pt-14">
-            {children}
-          </main>
-        </FloatingChat>
+        <main className="flex-1 overflow-y-auto w-full max-w-7xl mx-auto p-4 sm:p-6 pt-14">
+          {children}
+        </main>
+
+        <FloatingChat />
 
         <footer className="shrink-0 p-2 border-t shadow-lg rounded-t-md text-black text-center">
           &copy; {new Date().getFullYear()} Nam Fam

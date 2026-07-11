@@ -10,7 +10,7 @@ export const useChat = () => useContext(ChatContext);
 
 const GREETING = "Hello! What do you want to know about Nam?";
 
-const FloatingChat = ({ children }) => {
+const FloatingChat = () => {
   const [isExpanded, setIsExpanded] = useState(false);
 
   useEffect(() => {
@@ -114,8 +114,6 @@ const FloatingChat = ({ children }) => {
 
   return (
     <ChatContext.Provider value={chatValue}>
-      {children}
-
       {/* Backdrop */}
       {isExpanded && (
         <div
